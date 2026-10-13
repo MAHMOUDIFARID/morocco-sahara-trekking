@@ -1,0 +1,98 @@
+"use client";
+
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { ArrowUpRight } from "lucide-react";
+
+export interface HeroProps {
+  headline?: string;
+  subheadline?: string;
+  primaryCtaText?: string;
+  primaryCtaLink?: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+  className?: string;
+}
+
+const IMAGES = ["/place1.jpg", "/place2.jpg", "/place3.jpg"];
+
+export default function Hero({
+  headline = "Trekking au Maroc Atlas, Sahara et vallées berbères",
+  subheadline = "L’Atlas se découvre à pied, au rythme de ses habitants, au plus près de leurs traditions.",
+  primaryCtaText = "Explorer les Trekks",
+  primaryCtaLink = "/treks",
+  secondaryCtaText = "Discuter sur WhatsApp",
+  secondaryCtaLink = "https://wa.me/212672058267",
+  className = "",
+}: HeroProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % IMAGES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section
+      className={`relative w-full overflow-hidden bg-black min-h-screen min-h-[100dvh] flex items-center justify-center pt-20 sm:pt-24 pb-12 sm:pb-16 select-none ${className}`}
+    >
+      {/* Background Slideshow Images */}
+      <div className="absolute inset-0 z-0">
+        {IMAGES.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt={`Sahara & Atlas landscape ${i + 1}`}
+            loading={i === 0 ? "eager" : "lazy"}
+            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[1500ms] ease-in-out ${
+              i === currentIndex
+                ? "opacity-100 animate-kenburns"
+                : "opacity-0 pointer-events-none"
+            }`}
+          />
+        ))}
+
+        {/* Dark Vignette & Gradient Overlays for optimal text contrast */}
+        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-black/75 z-10" />
+      </div>
+
+      {/* Centered Main Content */}
+      <div className="relative z-20 mx-auto max-w-4xl px-4 text-center sm:px-6">
+        {/* Cormorant Garamond Headline */}
+        <h1
+          className="font-cormorant font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium sm:font-semibold text-white leading-[1.08] tracking-normal max-w-4xl mx-auto text-balance drop-shadow-xl"
+          style={{ fontFamily: "'Cormorant Garamond', var(--font-cormorant), Georgia, serif" }}
+        >
+          {headline}
+        </h1>
+
+        {/* Subheadline */}
+        <p className="mt-6 text-base sm:text-lg md:text-xl text-white/90 max-w-xl mx-auto leading-relaxed drop-shadow-md">
+          {subheadline}
+        </p>
+
+        {/* Dual Pill CTA Buttons */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link
+            href={primaryCtaLink}
+            className="w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm sm:text-base font-semibold text-black shadow-xl transition-all duration-200 hover:bg-gray-100 hover:scale-105 active:scale-95"
+          >
+            {primaryCtaText}
+          </Link>
+          <Link
+            href={secondaryCtaLink}
+            target={secondaryCtaLink.startsWith("http") ? "_blank" : undefined}
+            rel={secondaryCtaLink.startsWith("http") ? "noopener noreferrer" : undefined}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white/10 backdrop-blur-md px-8 py-3.5 text-sm sm:text-base font-semibold text-white border border-white/25 shadow-xl transition-all duration-200 hover:bg-white/20 hover:scale-105 active:scale-95"
+          >
+            <span>{secondaryCtaText}</span>
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}

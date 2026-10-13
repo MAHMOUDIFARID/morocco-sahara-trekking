@@ -1,0 +1,33 @@
+{
+  "name": "morocco-sahara-trekking",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^0.363.0",
+    "next": "14.2.15",
+    "next-mdx-remote": "^4.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "fs-extra": "^11.4.1",
+    "postcss": "^8.4.38",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --canvas: #FBF9F5;
+    --structure: #1C1917;
+    --accent: #C7482D;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html, body {
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    color: #1C1917;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    background: linear-gradient(180deg, #FDF9F3 0%, #FAF6F0 100%);
+    background-attachment: fixed;
+  }
+
+  input, button, textarea, select {
+    font-family: inherit;
+  }
+
+  /* Universal minimal scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(28, 25, 23, 0.2);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(28, 25, 23, 0.35);
+  }
+}
+
+.font-cormorant, .font-serif {
+  font-family: 'Cormorant Garamond', var(--font-cormorant), Georgia, serif !important;
+}
+
+/* Custom styling for MDX prose content */
+.prose-custom h2 {
+  position: relative;
+}
+
+.prose-custom h2::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background-color: #C7482D;
+  margin-top: 8px;
+  border-radius: 1px;
+}
+
+/* Infinite Marquee Animations for Testimonials */
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 40s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 40s linear infinite;
+}
+
+.marquee-container:hover .animate-marquee-left,
+.marquee-container:hover .animate-marquee-right {
+  animation-play-state: paused;
+}
+
+/* Ken Burns effect for Hero slideshow */
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 5s ease-out forwards;
+}
+
