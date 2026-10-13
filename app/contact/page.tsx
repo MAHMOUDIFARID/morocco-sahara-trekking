@@ -19,30 +19,45 @@ export default function ContactPage() {
   const [inquiryType, setInquiryType] = useState("Trek");
   const [message, setMessage] = useState("");
   const [newsletter, setNewsletter] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("loading");
+    setErrorMessage("");
 
-    {/* TODO: integrate Formspree or WhatsApp direct link */}
-    console.log({
-      firstName,
-      lastName,
-      country,
-      phone,
-      email,
-      inquiryType,
-      message,
-      newsletter,
-    });
+    try {
+      const res = await fetch("/api/send-mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${firstName} ${lastName}`.trim(),
+          email,
+          phone,
+          country,
+          inquiryType,
+          message,
+        }),
+      });
 
-    const waMessage = `Bonjour, je suis ${firstName} ${lastName}${
-      country ? ` (${country})` : ""
-    }.\n*Type de demande :* ${inquiryType}\n*Email :* ${email}\n*Téléphone :* ${phone}\n\n*Message :*\n${message}`;
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Erreur lors de l'envoi.");
+      }
 
-    window.open(
-      `https://wa.me/212672058267?text=${encodeURIComponent(waMessage)}`,
-      "_blank"
-    );
+      setStatus("success");
+      setFirstName("");
+      setLastName("");
+      setCountry("");
+      setPhone("");
+      setEmail("");
+      setMessage("");
+    } catch (err: any) {
+      console.error("Contact form error:", err);
+      setErrorMessage(err.message || "Erreur lors de l'envoi du message.");
+      setStatus("error");
+    }
   };
 
   return (
@@ -193,13 +208,33 @@ export default function ContactPage() {
               </button>
             </div>
 
+            {/* Status Messages */}
+            {status === "success" && (
+              <div className="p-4 rounded-2xl bg-green-50 border border-green-200 text-green-800 text-sm">
+                <p className="font-semibold">Message envoyé avec succès !</p>
+                <p className="mt-1 text-xs text-green-700">
+                  Merci pour votre message. Nous vous répondrons dans les plus brefs délais (généralement sous 2h).
+                </p>
+              </div>
+            )}
+
+            {status === "error" && (
+              <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-800 text-sm">
+                <p className="font-semibold">{errorMessage || "Erreur lors de l'envoi."}</p>
+                <p className="mt-1 text-xs text-red-700">
+                  Veuillez réessayer ou nous contacter directement via WhatsApp au +212 672 058 267.
+                </p>
+              </div>
+            )}
+
             {/* Row 7: Submit Button */}
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full rounded-full border-2 border-gray-900 py-3 text-sm sm:text-base font-medium text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition duration-200 active:scale-[0.99] cursor-pointer"
+                disabled={status === "loading"}
+                className="w-full rounded-full border-2 border-gray-900 py-3 text-sm sm:text-base font-medium text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition duration-200 active:scale-[0.99] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                Envoyer
+                {status === "loading" ? "Envoi en cours..." : "Envoyer"}
               </button>
             </div>
           </form>

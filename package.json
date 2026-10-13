@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
+    "export": "next build && node scripts/prepare-standalone.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,6 +14,7 @@
     "lucide-react": "^0.363.0",
     "next": "14.2.15",
     "next-mdx-remote": "^4.4.1",
+    "nodemailer": "^10.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rehype-autolink-headings": "^7.1.0",
@@ -21,6 +23,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
+    "@types/nodemailer": "^8.0.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
