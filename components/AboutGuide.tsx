@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import CountUp from "@/components/CountUp";
+import { getBlurData } from "@/lib/blurData";
 
 export default function AboutGuide() {
   return (
@@ -13,11 +15,14 @@ export default function AboutGuide() {
           <div className="relative pb-6 md:pb-8">
             {/* Main Image Container */}
             <div className="relative aspect-[4/5] w-full max-w-md mx-auto md:max-w-none rounded-3xl overflow-hidden shadow-2xl bg-black/5">
-              <img
-                src="/Mohamed.jpg"
+              <Image
+                src="/Mohamed.webp"
                 alt="Mohamed, guide de montagne et de désert certifié"
-                className="w-full h-full object-cover object-center"
-                loading="lazy"
+                fill
+                sizes="(max-width: 768px) 100vw, 500px"
+                className="object-cover object-center"
+                placeholder="blur"
+                blurDataURL={getBlurData("Mohamed")}
               />
             </div>
 

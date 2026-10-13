@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { getBlurData } from "@/lib/blurData";
 
 export interface SaharaCTAProps {
   headline?: string;
@@ -27,12 +29,15 @@ export default function SaharaCTA({
     <section
       className={`relative mx-4 md:mx-6 my-16 h-[500px] md:h-[600px] rounded-[32px] overflow-hidden select-none ${className}`}
     >
-      {/* Background Image using plain <img> */}
-      <img
-        src="/place4.jpg"
+      {/* Background Image using Next.js <Image> */}
+      <Image
+        src="/place4.webp"
         alt="Trekking au Maroc"
-        className="absolute inset-0 w-full h-full object-cover object-center"
-        loading="lazy"
+        fill
+        sizes="(max-width: 1200px) 100vw, 1200px"
+        className="object-cover object-center"
+        placeholder="blur"
+        blurDataURL={getBlurData("place4")}
       />
 
       {/* Dark Gradient Overlay */}
@@ -41,9 +46,11 @@ export default function SaharaCTA({
       {/* Centered Content */}
       <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6">
         {/* Top Logo / Emblem */}
-        <img
+        <Image
           src="/images/1.png"
           alt="MOROCCO SAHARA TREKKING"
+          width={80}
+          height={80}
           className="w-[60px] md:w-[80px] h-auto mx-auto mb-6 select-none pointer-events-none"
         />
 

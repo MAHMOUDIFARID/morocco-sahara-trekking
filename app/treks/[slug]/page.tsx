@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { getAllTreks, getTrekBySlug } from "@/lib/mdx";
 import MDXContent from "@/components/MDXContent";
 import TrekWhatsAppCTA, { getTrekWhatsAppUrl } from "@/components/TrekWhatsAppCTA";
+import { getBlurData } from "@/lib/blurData";
 import {
   Clock,
   MapPin,
@@ -129,11 +131,16 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
 
         {/* Cover Image */}
         <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8 shadow-card border border-structure/10">
-          <img
+          <Image
             src={trek.images[0] || "/treks/placeholder.webp"}
             alt={trek.title}
-            className="w-full h-full object-cover"
-            loading="eager"
+            fill
+            sizes="(max-width: 1200px) 100vw, 1200px"
+            className="object-cover"
+            priority={true}
+            quality={80}
+            placeholder="blur"
+            blurDataURL={getBlurData(trek.images[0])}
           />
         </div>
 

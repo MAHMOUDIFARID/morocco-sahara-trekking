@@ -34,8 +34,8 @@ export default function TreksPage() {
 
       {/* 17 Treks Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-        {treks.map((trek) => (
-          <TrekCard key={trek.slug} {...trek} />
+        {treks.map((trek, index) => (
+          <TrekCard key={trek.slug} {...trek} priority={index < 3} />
         ))}
       </div>
     </div>

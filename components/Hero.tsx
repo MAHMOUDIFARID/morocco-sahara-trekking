@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { getBlurData } from "@/lib/blurData";
 
 export interface HeroProps {
   headline?: string;
@@ -14,7 +16,7 @@ export interface HeroProps {
   className?: string;
 }
 
-const IMAGES = ["/place1.jpg", "/place2.jpg", "/place3.jpg"];
+const IMAGES = ["/place1.webp", "/place2.webp", "/place3.webp"];
 
 export default function Hero({
   headline = "Trekking au Maroc Atlas, Sahara et vallées berbères",
@@ -41,12 +43,17 @@ export default function Hero({
       {/* Background Slideshow Images */}
       <div className="absolute inset-0 z-0">
         {IMAGES.map((src, i) => (
-          <img
+          <Image
             key={src}
             src={src}
             alt={`Sahara & Atlas landscape ${i + 1}`}
-            loading={i === 0 ? "eager" : "lazy"}
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-[1500ms] ease-in-out ${
+            fill
+            sizes="100vw"
+            priority={i === 0}
+            quality={80}
+            placeholder="blur"
+            blurDataURL={getBlurData(src)}
+            className={`object-cover object-center transition-opacity duration-[1500ms] ease-in-out ${
               i === currentIndex
                 ? "opacity-100 animate-kenburns"
                 : "opacity-0 pointer-events-none"

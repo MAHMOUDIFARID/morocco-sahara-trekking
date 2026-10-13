@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type Props = {
   trekTitle: string;
   trekDuration: number;
@@ -26,7 +28,7 @@ export default function TrekWhatsAppCTA({ trekTitle, trekDuration, trekPrice }: 
   return (
     <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm text-center">
       {/* WhatsApp Icon */}
-      <img
+      <Image
         src="/images/whatsapp.png"
         alt="WhatsApp"
         width={48}

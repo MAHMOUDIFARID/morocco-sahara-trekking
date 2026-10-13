@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Trek } from "@/types";
+import { getBlurData } from "@/lib/blurData";
 
 export interface TrekCardProps {
   trek?: Trek;
@@ -12,6 +14,7 @@ export interface TrekCardProps {
   images?: string[];
   slug?: string;
   showLink?: boolean;
+  priority?: boolean;
 }
 
 export default function TrekCard(props: TrekCardProps) {
@@ -65,14 +68,16 @@ export default function TrekCard(props: TrekCardProps) {
     <article className="group h-full flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 select-none">
       {/* TOP: Image */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100">
-        <img
+        <Image
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-          decoding="async"
-          width={800}
-          height={500}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          priority={props.priority || false}
+          quality={75}
+          placeholder="blur"
+          blurDataURL={getBlurData(image)}
         />
 
         {/* Duration badge (top-right of image) */}

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
 
@@ -75,9 +76,11 @@ export default function Footer() {
       <div className="w-full">
         {/* Brand Logo */}
         <div className="flex justify-center mb-16 sm:mb-20 md:mb-24">
-          <img
+          <Image
             src="/logo.png"
             alt="MOROCCO SAHARA TREKKING"
+            width={260}
+            height={70}
             className="h-auto w-[180px] sm:w-[220px] md:w-[260px] object-contain brightness-0 invert"
           />
         </div>
@@ -168,9 +171,11 @@ export default function Footer() {
           aria-label="Discuter sur WhatsApp"
           className="flex h-11 w-11 items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 drop-shadow-xl"
         >
-          <img
+          <Image
             src="/images/whatsapp.png"
             alt="WhatsApp"
+            width={44}
+            height={44}
             className="w-full h-full object-contain select-none"
           />
         </a>
