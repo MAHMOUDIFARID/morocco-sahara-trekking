@@ -14,12 +14,18 @@ export default function TopBar() {
     <div className="hidden md:flex w-full bg-[#C0462F] text-white text-xs md:text-sm h-10 border-b border-white/15 z-40 relative">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Left Side: Location */}
-        <div className="flex items-center gap-2">
+        <a
+          href="https://www.google.com/maps/place/Trekking+Vall%C3%A9e+des+Roses+Tour+Guide+Mohamed/@31.3844657,-6.1343235,17z"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Voir sur Google Maps"
+          className="flex items-center gap-2 transition-all duration-200 hover:opacity-80 hover:text-[#FDE8DC]"
+        >
           <MapPin className="h-3.5 w-3.5 text-white shrink-0" />
-          <span className="font-normal text-white">
-            45200 Kelaât M&apos;Gouna
+          <span className="font-normal">
+            Boutaghrar, Kelaât M&apos;Gouna 45200
           </span>
-        </div>
+        </a>
 
         {/* Right Side: Contact & Social */}
         <div className="flex items-center gap-6">
