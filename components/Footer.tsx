@@ -11,11 +11,6 @@ const NAV_LINKS = [
   { label: "Contact", href: "/contact" },
 ];
 
-const SOCIAL_LINKS = [
-  { label: "Instagram", href: "https://www.instagram.com/mohamed_tours_guide/" },
-  { label: "Facebook", href: "https://www.facebook.com/share/1Dsv9qGioK/" },
-  { label: "Gmail", href: "mailto:m_assi_ni@hotmail.fr" },
-];
 
 // Groups of related keywords so variations (e.g. bouguemez, bougmaz, bougmez, bouilli) share the same theme
 const THEME_GROUPS = [
@@ -131,21 +126,50 @@ export default function Footer() {
           {/* Column 4: External Social Links */}
           <div>
             <h3 className="font-semibold text-base text-white mb-4">Réseaux sociaux</h3>
-            <ul className="space-y-3">
-              {SOCIAL_LINKS.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    {...(link.href.startsWith("http")
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    className="block text-sm text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <div className="flex items-center gap-4">
+              {/* Instagram */}
+              <a
+                href="https://www.instagram.com/mohamed_tours_guide/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                title="Instagram"
+                className="text-white hover:text-[#C0462F] transition-colors duration-200"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2"/>
+                  <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+                </svg>
+              </a>
+
+              {/* Facebook */}
+              <a
+                href="https://www.facebook.com/share/1Dsv9qGioK/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                title="Facebook"
+                className="text-white hover:text-[#C0462F] transition-colors duration-200"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" fill="currentColor"/>
+                  <path d="M14 8H13C12.4477 8 12 8.44772 12 9V11H14L13.5 14H12V21H9V14H7V11H9V9C9 7.34315 10.3431 6 12 6H14V8Z" fill="#000000"/>
+                </svg>
+              </a>
+
+              {/* Gmail */}
+              <a
+                href="mailto:m_assi_ni@hotmail.fr"
+                aria-label="Email"
+                title="m_assi_ni@hotmail.fr"
+                className="text-white hover:text-[#C0462F] transition-colors duration-200"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="currentColor"/>
+                </svg>
+              </a>
+            </div>
           </div>
 
           {/* Column 5 (Far Right): Map / Location */}
