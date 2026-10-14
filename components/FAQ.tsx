@@ -58,7 +58,7 @@ export default function FAQ({
   };
 
   return (
-    <section className={`w-full py-20 sm:py-24 px-4 ${className}`}>
+    <section id="faq" className={`w-full py-20 sm:py-24 px-4 ${className}`}>
       <div className="mx-auto max-w-[800px]">
         {/* Redesigned Centered Headline */}
         <div className="mb-12 text-center">

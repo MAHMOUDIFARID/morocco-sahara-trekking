@@ -8,8 +8,8 @@ const navigationLinks = [
   { label: "Accueil", href: "/" },
   { label: "Tous les Trekks", href: "/treks" },
   { label: "Régions", href: "/regions" },
-  { label: "Nos Guides", href: "/guides" },
   { label: "À propos du Sahara", href: "/a-propos" },
+  { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];
 
