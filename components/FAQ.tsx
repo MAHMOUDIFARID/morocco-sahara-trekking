@@ -50,8 +50,8 @@ export default function FAQ({
   items = FAQ_ITEMS,
   className = "",
 }: FAQProps) {
-  // Second item open by default matching reference image
-  const [openIndex, setOpenIndex] = useState<number | null>(1);
+  // All items closed by default
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
