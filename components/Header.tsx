@@ -191,10 +191,10 @@ export default function Header() {
 
           <button
             onClick={() => setIsOpen(false)}
-            className="rounded-full p-2 text-white/80 hover:text-white hover:bg-white/10 transition flex items-center justify-center"
+            className="bg-transparent p-2 text-white flex items-center justify-center"
             aria-label="Fermer le menu"
           >
-            <X className="h-6 w-6" />
+            <X size={24} />
           </button>
         </div>
 
