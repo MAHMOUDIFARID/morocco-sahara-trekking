@@ -96,7 +96,8 @@ export default function Footer() {
 
           {/* Column 2: Navigation Links */}
           <div>
-            <ul className="space-y-4">
+            <h3 className="font-semibold text-base text-white mb-4">Navigation</h3>
+            <ul className="space-y-3">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -129,7 +130,8 @@ export default function Footer() {
 
           {/* Column 4 (Right): External Social Links */}
           <div>
-            <ul className="space-y-4">
+            <h3 className="font-semibold text-base text-white mb-4">Réseaux sociaux</h3>
+            <ul className="space-y-3">
               {SOCIAL_LINKS.map((link) => (
                 <li key={link.label}>
                   <a
