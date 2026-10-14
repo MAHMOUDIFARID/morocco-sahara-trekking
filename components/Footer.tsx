@@ -109,12 +109,12 @@ export default function Footer() {
           {/* Column 3: Trekks Populaires */}
           <div>
             <h3 className="font-semibold text-base text-white mb-4">Trekks Populaires</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5">
               {footerTreks.map((trek) => (
                 <li key={trek.slug}>
                   <Link
                     href={`/treks/${trek.slug}`}
-                    className="text-sm text-gray-400 hover:text-white transition-colors block leading-snug"
+                    className="text-xs text-gray-400 hover:text-white transition-colors block leading-snug"
                   >
                     {trek.title}
                   </Link>
