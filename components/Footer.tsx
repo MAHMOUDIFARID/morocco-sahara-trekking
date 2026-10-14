@@ -25,8 +25,8 @@ const THEME_GROUPS = [
   { theme: "gorges", keywords: ["gorges"] },
 ];
 
-// Pick 6 unique treks — avoid having two treks with the same keyword/theme
-function pickUniqueTreks(allTreks: Trek[], count = 6): Trek[] {
+// Pick 7 unique treks — avoid having two treks with the same keyword/theme
+function pickUniqueTreks(allTreks: Trek[], count = 7): Trek[] {
   const picked: Trek[] = [];
   const usedThemes = new Set<string>();
 
@@ -63,7 +63,7 @@ function pickUniqueTreks(allTreks: Trek[], count = 6): Trek[] {
 
 export default function Footer() {
   const allTreks = getAllTreks();
-  const footerTreks = pickUniqueTreks(allTreks, 6);
+  const footerTreks = pickUniqueTreks(allTreks, 7);
 
   return (
     <footer className="relative z-10 w-full bg-[#000000] text-white pt-20 sm:pt-28 pb-12 px-6 md:px-12 flex flex-col justify-between">
