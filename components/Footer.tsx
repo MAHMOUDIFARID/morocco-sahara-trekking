@@ -149,33 +149,37 @@ export default function Footer() {
           </div>
 
           {/* Column 5 (Far Right): Map / Location */}
-          <div>
-            <h3 className="font-semibold text-base text-white mb-4">Localisation</h3>
-            <a
-              href="https://www.google.com/maps/place/Trekking+Vall%C3%A9e+des+Roses+Tour+Guide+Mohamed/@31.3844657,-6.1343235,17z"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group"
-              title="Voir sur Google Maps"
-            >
-              <div className="relative w-full aspect-square max-w-[220px] rounded-2xl overflow-hidden border border-white/10 group-hover:border-[#C0462F]/40 transition-colors">
-                <iframe
-                  src="https://maps.google.com/maps?q=Trekking%20Vall%C3%A9e%20des%20Roses%20Tour%20Guide%20Mohamed%20Kelaat%20M%27Gouna&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, filter: "grayscale(30%) brightness(0.85)" }}
-                  allowFullScreen={false}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Kelaat M'Gouna — Morocco Sahara Trekking"
-                  className="absolute inset-0 w-full h-full pointer-events-none"
-                />
-              </div>
-            </a>
-            <p className="text-xs text-gray-500 mt-3 leading-snug">
-              Kelaat M&apos;Gouna<br />
-              45200, Vallée des Roses, Maroc
-            </p>
+          <div className="flex flex-col h-full items-start lg:items-end">
+            <h3 className="font-semibold text-base text-white mb-4 lg:text-right w-full">
+              Localisation
+            </h3>
+            <div className="flex-1 flex flex-col justify-end w-full items-start lg:items-end">
+              <a
+                href="https://www.google.com/maps/place/Trekking+Vall%C3%A9e+des+Roses+Tour+Guide+Mohamed/@31.3844657,-6.1343235,17z"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group"
+                title="Voir sur Google Maps"
+              >
+                <div className="relative w-[260px] h-[260px] overflow-hidden border border-white/10 group-hover:border-[#C0462F]/60 transition-colors">
+                  <iframe
+                    src="https://maps.google.com/maps?q=Trekking%20Vall%C3%A9e%20des%20Roses%20Tour%20Guide%20Mohamed%20Kelaat%20M%27Gouna&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, filter: "grayscale(20%) brightness(0.9)" }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Kelaat M'Gouna — Morocco Sahara Trekking"
+                    className="absolute inset-0 w-full h-full pointer-events-none"
+                  />
+                </div>
+              </a>
+              <p className="text-xs text-gray-500 mt-3 leading-snug lg:text-right">
+                Kelaat M&apos;Gouna<br />
+                45200, Vallée des Roses, Maroc
+              </p>
+            </div>
           </div>
         </div>
       </div>
