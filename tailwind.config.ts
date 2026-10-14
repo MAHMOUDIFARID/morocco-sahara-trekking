@@ -36,9 +36,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        serif: ["'Cormorant Garamond'", "var(--font-cormorant)", "Georgia", "serif"],
-        cormorant: ["'Cormorant Garamond'", "var(--font-cormorant)", "Georgia", "serif"],
-        display: ["'Cormorant Garamond'", "var(--font-cormorant)", "Georgia", "serif"],
+        serif: ["var(--font-averia-serif)", "Georgia", "serif"],
+        display: ["var(--font-averia-serif)", "Georgia", "serif"],
         mono: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
     },

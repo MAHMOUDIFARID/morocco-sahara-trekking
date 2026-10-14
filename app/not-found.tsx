@@ -13,7 +13,7 @@ export default function NotFound() {
           Erreur 404 • Page Non Trouvée
         </span>
 
-        <h1 className="text-4xl sm:text-5xl font-normal font-cormorant text-structure tracking-tight">
+        <h1 className="text-4xl sm:text-5xl font-normal font-serif text-structure tracking-tight">
           Cette Oasis n&apos;Existe Pas
         </h1>
 

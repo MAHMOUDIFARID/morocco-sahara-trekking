@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
+import { Inter, Averia_Serif_Libre } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,11 +12,12 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const cormorant = Cormorant_Garamond({
+const averiaSerif = Averia_Serif_Libre({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "700"],
+  style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-cormorant",
+  variable: "--font-averia-serif",
 });
 
 export const metadata: Metadata = {
@@ -56,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} ${cormorant.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${averiaSerif.variable}`}>
       <body className={`${inter.className} flex min-h-screen flex-col font-sans text-structure antialiased selection:bg-accent selection:text-canvas-pure`}>
         <TopBar />
         <Header />

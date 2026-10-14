@@ -56,8 +56,7 @@ export default function SaharaCTA({
 
         {/* Headline */}
         <h2
-          className="font-cormorant font-serif font-medium sm:font-semibold text-white text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-normal max-w-[850px] mx-auto text-balance drop-shadow-xl"
-          style={{ fontFamily: "'Cormorant Garamond', var(--font-cormorant), Georgia, serif" }}
+          className="font-serif font-medium sm:font-semibold text-white text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-normal max-w-[850px] mx-auto text-balance drop-shadow-xl"
         >
           {headline}
         </h2>
