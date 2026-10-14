@@ -1,9 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { ArrowUp } from "lucide-react";
+import { getAllTreks } from "@/lib/mdx";
+import { Trek } from "@/types";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const NAV_LINKS = [
   { label: "Accueil", href: "/" },
@@ -12,63 +11,64 @@ const NAV_LINKS = [
   { label: "Contact", href: "/contact" },
 ];
 
-const POPULAR_TREKS = [
-  {
-    label: "Trek de 7 jours - Vallées d'Aït Bouguemez",
-    href: "/treks/trek-7-jours-vallees-ait-bouguemez-ait-bououli",
-  },
-  {
-    label: "Trek villages berbères vallée des Roses",
-    href: "/treks/trek-villages-berberes-vallee-des-roses-4-jours",
-  },
-  {
-    label: "Trek Randonnée village Berbère Aït Bougmaz",
-    href: "/treks/trek-randonnee-village-berbere-ait-bougmaz",
-  },
-  {
-    label: "5 jours - Vallées Aït Bougmez & Aït Bouilli",
-    href: "/treks/5-jours-vallees-ait-bougmez-ait-bouilli",
-  },
-  {
-    label: "Trek Toubkal - villages berbères 3 jours",
-    href: "/treks/trek-toubkal-villages-berberes-3-jours",
-  },
-  {
-    label: "Vallée Aït Bouguemez : Trekking et découverte",
-    href: "/treks/vallee-ait-bouguemez-trekking-decouverte-atlas",
-  },
-];
-
 const SOCIAL_LINKS = [
   { label: "Instagram", href: "https://www.instagram.com/mohamed_tours_guide/" },
   { label: "Facebook", href: "https://www.facebook.com/share/1Dsv9qGioK/" },
   { label: "Gmail", href: "mailto:m_assi_ni@hotmail.fr" },
 ];
 
-export default function Footer() {
-  const [isVisible, setIsVisible] = useState(false);
+// Groups of related keywords so variations (e.g. bouguemez, bougmaz, bougmez, bouilli) share the same theme
+const THEME_GROUPS = [
+  { theme: "bouguemez", keywords: ["bouguemez", "bougmaz", "bougmez", "bououli", "bouilli", "sremt"] },
+  { theme: "roses", keywords: ["roses", "rose"] },
+  { theme: "toubkal", keywords: ["toubkal"] },
+  { theme: "desert", keywords: ["desert", "désert", "sahara"] },
+  { theme: "mgoun", keywords: ["mgoun", "m'goun", "traversee", "ascension"] },
+  { theme: "siroua", keywords: ["siroua"] },
+  { theme: "saghro", keywords: ["saghro"] },
+  { theme: "tassaout", keywords: ["tassaout"] },
+  { theme: "gorges", keywords: ["gorges"] },
+];
 
-  useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
+// Pick 6 unique treks — avoid having two treks with the same keyword/theme
+function pickUniqueTreks(allTreks: Trek[], count = 6): Trek[] {
+  const picked: Trek[] = [];
+  const usedThemes = new Set<string>();
+
+  for (const trek of allTreks) {
+    if (picked.length >= count) break;
+
+    const titleLower = trek.title.toLowerCase();
+    const matchedGroup = THEME_GROUPS.find((group) =>
+      group.keywords.some((kw) => titleLower.includes(kw))
+    );
+
+    const themeKey = matchedGroup ? matchedGroup.theme : trek.slug;
+
+    // Skip if this theme was already used
+    if (usedThemes.has(themeKey)) continue;
+
+    // Add to picked and mark theme as used
+    picked.push(trek);
+    usedThemes.add(themeKey);
+  }
+
+  // If we still need more treks, fill with remaining ones
+  if (picked.length < count) {
+    for (const trek of allTreks) {
+      if (picked.length >= count) break;
+      if (!picked.find((t) => t.slug === trek.slug)) {
+        picked.push(trek);
       }
-    };
+    }
+  }
 
-    window.addEventListener("scroll", toggleVisibility);
-    toggleVisibility();
+  return picked;
+}
 
-    return () => window.removeEventListener("scroll", toggleVisibility);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+export default function Footer() {
+  const allTreks = getAllTreks();
+  const footerTreks = pickUniqueTreks(allTreks, 6);
 
   return (
     <footer className="relative z-10 w-full bg-[#000000] text-white pt-20 sm:pt-28 pb-12 px-6 md:px-12 flex flex-col justify-between">
@@ -110,16 +110,17 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Trekks */}
+          {/* Column 3: Trekks Populaires */}
           <div>
-            <ul className="space-y-4">
-              {POPULAR_TREKS.map((trek) => (
-                <li key={trek.href}>
+            <h3 className="font-semibold text-base text-white mb-4">Trekks Populaires</h3>
+            <ul className="space-y-3">
+              {footerTreks.map((trek) => (
+                <li key={trek.slug}>
                   <Link
-                    href={trek.href}
-                    className="block text-sm text-gray-400 hover:text-white transition-colors duration-200 leading-snug"
+                    href={`/treks/${trek.slug}`}
+                    className="text-sm text-gray-400 hover:text-white transition-colors block leading-snug"
                   >
-                    {trek.label}
+                    {trek.title}
                   </Link>
                 </li>
               ))}
@@ -147,39 +148,8 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Floating Action Buttons (Fixed Bottom-Right) */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-3">
-        {/* Scroll to Top Button */}
-        <button
-          onClick={scrollToTop}
-          type="button"
-          aria-label="Retour en haut"
-          className={`flex h-11 w-11 items-center justify-center rounded-full bg-[#1A1A1A] text-white border border-white/10 shadow-xl transition-all duration-300 hover:bg-[#262626] hover:scale-110 active:scale-95 ${
-            isVisible
-              ? "opacity-100 translate-y-0 pointer-events-auto"
-              : "opacity-0 translate-y-4 pointer-events-none"
-          }`}
-        >
-          <ArrowUp className="w-5 h-5" />
-        </button>
-
-        {/* WhatsApp Button */}
-        <a
-          href="https://wa.me/212672058267"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Discuter sur WhatsApp"
-          className="flex h-11 w-11 items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 drop-shadow-xl"
-        >
-          <Image
-            src="/images/whatsapp.png"
-            alt="WhatsApp"
-            width={44}
-            height={44}
-            className="w-full h-full object-contain select-none"
-          />
-        </a>
-      </div>
+      {/* Floating Action Buttons */}
+      <ScrollToTop />
     </footer>
   );
 }
