@@ -134,7 +134,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Instagram"
                 title="Instagram"
-                className="hover:opacity-80 transition-opacity duration-200"
+                className="hover:opacity-70 transition-opacity duration-200"
               >
                 <img
                   src="/icons/instagram.png"
@@ -142,6 +142,7 @@ export default function Footer() {
                   width={28}
                   height={28}
                   className="w-7 h-7"
+                  style={{ filter: "brightness(0) invert(1)" }}
                 />
               </a>
 
@@ -152,7 +153,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 aria-label="Facebook"
                 title="Facebook"
-                className="hover:opacity-80 transition-opacity duration-200"
+                className="hover:opacity-70 transition-opacity duration-200"
               >
                 <img
                   src="/icons/facebook.png"
@@ -160,6 +161,7 @@ export default function Footer() {
                   width={28}
                   height={28}
                   className="w-7 h-7"
+                  style={{ filter: "brightness(0) invert(1)" }}
                 />
               </a>
 
@@ -168,7 +170,7 @@ export default function Footer() {
                 href="mailto:m_assi_ni@hotmail.fr"
                 aria-label="Email"
                 title="m_assi_ni@hotmail.fr"
-                className="hover:opacity-80 transition-opacity duration-200"
+                className="hover:opacity-70 transition-opacity duration-200"
               >
                 <img
                   src="/icons/gmail.png"
@@ -176,6 +178,7 @@ export default function Footer() {
                   width={28}
                   height={28}
                   className="w-7 h-7"
+                  style={{ filter: "brightness(0) invert(1)" }}
                 />
               </a>
             </div>
