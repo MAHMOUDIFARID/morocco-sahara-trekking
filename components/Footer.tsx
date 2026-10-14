@@ -4,10 +4,12 @@ import { getAllTreks } from "@/lib/mdx";
 import { Trek } from "@/types";
 import ScrollToTop from "@/components/ScrollToTop";
 
-const NAV_LINKS = [
+const navigationLinks = [
   { label: "Accueil", href: "/" },
-  { label: "Trekks", href: "/treks" },
-  { label: "À propos", href: "/#about" },
+  { label: "Tous les Trekks", href: "/treks" },
+  { label: "Régions", href: "/regions" },
+  { label: "Nos Guides", href: "/guides" },
+  { label: "À propos du Sahara", href: "/a-propos" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -93,11 +95,11 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-base text-white mb-4">Navigation</h3>
             <ul className="space-y-3">
-              {NAV_LINKS.map((link) => (
-                <li key={link.label}>
+              {navigationLinks.map((link) => (
+                <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200 block leading-snug"
                   >
                     {link.label}
                   </Link>
