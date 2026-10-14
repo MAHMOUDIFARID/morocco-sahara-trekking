@@ -154,14 +154,12 @@ export default function Header() {
         {/* Mobile menu toggle */}
         <button
           onClick={() => setIsOpen(true)}
-          className={`md:hidden rounded-lg p-2 transition flex items-center justify-center ${
-            isTransparent
-              ? "text-white hover:bg-white/10"
-              : "text-structure hover:bg-structure/5"
+          className={`md:hidden bg-transparent p-2 flex items-center justify-center ${
+            isTransparent ? "text-white" : "text-structure"
           }`}
-          aria-label="Ouvrir le menu"
+          aria-label="Menu"
         >
-          <Menu className="h-6 w-6" />
+          <Menu size={24} />
         </button>
       </div>
 
