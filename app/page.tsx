@@ -49,9 +49,6 @@ export default function HomePage() {
       {/* About The Guide Section */}
       <AboutGuide />
 
-      {/* Accessible Option Section */}
-      <AccessibleOption />
-
       {/* Why Choose Us Section */}
       <WhyUs />
 
@@ -85,6 +82,9 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* Accessible Option Section */}
+      <AccessibleOption />
 
       {/* Testimonials Marquee Section */}
       <Testimonials />
