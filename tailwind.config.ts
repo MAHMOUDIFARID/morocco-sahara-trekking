@@ -36,8 +36,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        serif: ["var(--font-averia-serif)", "Georgia", "serif"],
-        display: ["var(--font-averia-serif)", "Georgia", "serif"],
+        serif: ["var(--font-fraunces)", "Georgia", "serif"],
+        display: ["var(--font-fraunces)", "Georgia", "serif"],
         mono: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
     },

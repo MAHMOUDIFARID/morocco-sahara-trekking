@@ -69,8 +69,8 @@ export default function Hero({
 
       {/* Centered Main Content */}
       <div className="relative z-20 mx-auto max-w-4xl px-4 text-center sm:px-6">
-        {/* Averia Serif Libre Rotating Headline */}
-        <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-medium sm:font-semibold text-white leading-tight tracking-tight text-center max-w-4xl mx-auto drop-shadow-xl">
+        {/* Fraunces Serif Rotating Headline */}
+        <h1 className="font-serif font-medium text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-[1.05] tracking-tight text-center max-w-4xl mx-auto drop-shadow-xl">
           Découvrez le Maroc
           <br />
           à travers{" "}

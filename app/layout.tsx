@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Averia_Serif_Libre } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,12 +12,11 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const averiaSerif = Averia_Serif_Libre({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
   style: ["normal", "italic"],
   display: "swap",
-  variable: "--font-averia-serif",
+  variable: "--font-fraunces",
 });
 
 export const metadata: Metadata = {
@@ -57,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} ${averiaSerif.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${fraunces.variable}`}>
       <body className={`${inter.className} flex min-h-screen flex-col font-sans text-structure antialiased selection:bg-accent selection:text-canvas-pure`}>
         <TopBar />
         <Header />
