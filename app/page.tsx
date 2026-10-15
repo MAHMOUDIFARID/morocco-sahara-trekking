@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import AboutGuide from "@/components/AboutGuide";
 import AccessibleOption from "@/components/AccessibleOption";
 import WhyUs from "@/components/WhyUs";
+import TitleDecor from "@/components/TitleDecor";
 import { ArrowRight } from "lucide-react";
 
 const FEATURED_TREKS = [
@@ -59,10 +60,11 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 text-left">
+          <TitleDecor align="left" className="mb-3" />
           <span className="text-xs uppercase tracking-widest font-semibold text-[#C0462F] block">
             EXPÉDITIONS PHARES
           </span>
-          <h2 className="font-sans font-bold text-3xl md:text-4xl text-[#1a1a1a] mt-3 leading-tight tracking-tight">
+          <h2 className="font-display text-3xl md:text-4xl text-[#1a1a1a] mt-3 leading-tight tracking-tight">
             Nos programmes dans le Haut Atlas et le Sud marocain
           </h2>
           <p className="text-base text-gray-600 max-w-2xl mt-4 leading-relaxed font-sans">

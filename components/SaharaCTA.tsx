@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getBlurData } from "@/lib/blurData";
+import TitleDecor from "./TitleDecor";
 
 export interface SaharaCTAProps {
   headline?: string;
@@ -51,12 +52,15 @@ export default function SaharaCTA({
           alt="MOROCCO SAHARA TREKKING"
           width={80}
           height={80}
-          className="w-[60px] md:w-[80px] h-auto mx-auto mb-6 select-none pointer-events-none"
+          className="w-[60px] md:w-[80px] h-auto mx-auto mb-4 select-none pointer-events-none"
         />
+
+        {/* Decorative Marks */}
+        <TitleDecor color="text-white" className="mb-4" />
 
         {/* Headline */}
         <h2
-          className="font-serif font-medium sm:font-semibold text-white text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-normal max-w-[850px] mx-auto text-balance drop-shadow-xl"
+          className="font-display text-white text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-normal max-w-[850px] mx-auto text-balance drop-shadow-xl"
         >
           {headline}
         </h2>

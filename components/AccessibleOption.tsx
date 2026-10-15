@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import TitleDecor from "./TitleDecor";
 
 export default function AccessibleOption() {
   const whatsappMessage = encodeURIComponent(
@@ -10,7 +11,7 @@ export default function AccessibleOption() {
     <section className="w-full bg-[#0F0F0F] py-14 md:py-20 px-6">
       <div className="max-w-3xl mx-auto text-center">
         {/* Sparkle icon at the top */}
-        <div className="flex justify-center mb-4" aria-hidden="true">
+        <div className="flex justify-center mb-3" aria-hidden="true">
           <svg
             viewBox="0 0 24 24"
             fill="currentColor"
@@ -20,8 +21,11 @@ export default function AccessibleOption() {
           </svg>
         </div>
 
+        {/* Decorative Marks */}
+        <TitleDecor color="text-white/80" className="mb-4" />
+
         {/* Big bold headline */}
-        <h2 className="font-sans font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-tight max-w-2xl mx-auto mb-5">
+        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-white leading-tight max-w-2xl mx-auto mb-5">
           Vous ne pouvez pas marcher longtemps ?
         </h2>
 

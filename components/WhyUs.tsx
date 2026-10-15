@@ -1,3 +1,5 @@
+import TitleDecor from "./TitleDecor";
+
 function HandDrawnMountain({ className = "w-7 h-7" }: { className?: string }) {
   return (
     <svg
@@ -185,13 +187,16 @@ export default function WhyUs() {
             </svg>
           </div>
 
+          {/* Decorative Marks above Eyebrow */}
+          <TitleDecor className="mb-4" />
+
           {/* Eyebrow text */}
           <span className="font-sans font-medium text-xs md:text-sm uppercase tracking-widest text-[#C0462F] block mb-4">
             NOTRE DIFFÉRENCE
           </span>
 
-          {/* Fraunces Headline */}
-          <h2 className="font-serif font-medium text-3xl md:text-4xl lg:text-5xl text-[#1a1a1a] leading-tight max-w-2xl mx-auto mb-6">
+          {/* DM Serif Display Headline */}
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-[#1a1a1a] leading-tight max-w-2xl mx-auto mb-6">
             Pourquoi nous{" "}
             <span className="relative inline-block">
               choisir ?

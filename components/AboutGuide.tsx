@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import CountUp from "@/components/CountUp";
 import { getBlurData } from "@/lib/blurData";
+import TitleDecor from "@/components/TitleDecor";
 
 export default function AboutGuide() {
   return (
@@ -43,12 +44,12 @@ export default function AboutGuide() {
 
           {/* RIGHT COLUMN: Text & Stats */}
           <div className="flex flex-col justify-center">
-
+            <TitleDecor align="left" className="mb-4" />
 
             {/* Headline */}
-            <h2 className="text-2xl md:text-3xl lg:text-4xl text-[#1a1a1a] leading-tight mb-6">
-              <span className="italic font-bold">Mohamed,</span>{" "}
-              <span className="font-bold not-italic">
+            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl text-[#1a1a1a] leading-tight mb-6">
+              <span className="italic">Mohamed,</span>{" "}
+              <span className="not-italic">
                 guide de montagne et de désert certifié
               </span>
             </h2>

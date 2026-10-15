@@ -1,3 +1,5 @@
+import TitleDecor from "./TitleDecor";
+
 interface Testimonial {
   quote: string;
   author: string;
@@ -97,7 +99,8 @@ export default function Testimonials() {
 
       {/* Section Header */}
       <div className="max-w-3xl mx-auto text-center mb-16 px-4">
-        <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-[#1a1a1a] tracking-tight">
+        <TitleDecor className="mb-4" />
+        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-[#1a1a1a] tracking-tight">
           Ce que disent nos voyageurs
         </h2>
       </div>
