@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import AboutGuide from "@/components/AboutGuide";
 import AccessibleOption from "@/components/AccessibleOption";
 import WhyUs from "@/components/WhyUs";
+import TravelAlbum from "@/components/TravelAlbum";
 import { ArrowRight } from "lucide-react";
 
 const FEATURED_TREKS = [
@@ -101,6 +102,9 @@ export default function HomePage() {
 
       {/* Sahara Full-Image CTA */}
       <SaharaCTA />
+
+      {/* Travel Photo Album */}
+      <TravelAlbum />
     </div>
   );
 }
