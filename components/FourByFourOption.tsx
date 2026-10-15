@@ -17,10 +17,15 @@ export default function FourByFourOption() {
     <section className="w-full bg-[#FDF9F3] py-16 md:py-20 px-6">
       <div className="mx-auto max-w-4xl text-center">
         
-        {/* Small pill badge */}
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FDE8DC] text-[#C0462F] text-xs font-semibold uppercase tracking-widest mb-5">
-          <span>•</span>
-          <span>OPTION ACCESSIBLE</span>
+        {/* Decorative 4-pointed star icon */}
+        <div className="flex justify-center mb-5" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-5 h-5 text-[#1a1a1a]"
+          >
+            <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" />
+          </svg>
         </div>
 
         {/* Headline */}
