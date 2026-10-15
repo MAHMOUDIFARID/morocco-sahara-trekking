@@ -1,86 +1,43 @@
-import { Check } from "lucide-react";
-
 export default function FourByFourOption() {
   const whatsappMessage = encodeURIComponent(
-    "Bonjour Mohamed, je suis intéressé(e) par l'option 4x4 sans randonnée. Pouvez-vous m'en dire plus ?"
+    "Bonjour Mohamed, je souhaite demander un devis gratuit pour un itinéraire sur-mesure au départ de Marrakech."
   );
   const whatsappUrl = `https://wa.me/212672058267?text=${whatsappMessage}`;
 
-  const features = [
-    "Aucune marche requise — vous restez confortablement assis.",
-    "Chauffeur-guide local expérimenté.",
-    "Pauses photo illimitées sur les plus beaux spots.",
-    "Formule adaptée aux enfants et aux seniors.",
-  ];
-
   return (
-    <section className="w-full bg-[#FDF9F3] py-20 md:py-24 px-6">
-      <div className="mx-auto max-w-[1200px]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          
-          {/* LEFT COLUMN — Image */}
-          <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-lg bg-gray-100">
-            <img
-              src="/images/4x4-option.jpg"
-              alt="Circuit et excursion 4x4 dans le désert marocain"
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-
-          {/* RIGHT COLUMN — Content */}
-          <div className="flex flex-col items-start text-left">
-            {/* Small pill badge */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FDE8DC] text-[#C0462F] text-xs font-semibold uppercase tracking-widest mb-5">
-              <span>•</span>
-              <span>OPTION ACCESSIBLE</span>
-            </div>
-
-            {/* Headline */}
-            <h2 className="font-sans font-bold text-2xl md:text-3xl lg:text-4xl text-[#1a1a1a] leading-tight mb-5">
-              Vous ne pouvez pas marcher longtemps ?
-            </h2>
-
-            {/* Description */}
-            <p className="font-sans text-base text-gray-600 leading-relaxed mb-8">
-              Pas de souci ! Nous proposons une formule en 4x4 qui vous permet de
-              découvrir le désert, les dunes et les villages berbères sans effort.
-              Idéal pour les familles avec enfants, les personnes âgées, ou
-              simplement ceux qui préfèrent le confort.
-            </p>
-
-            {/* Feature list */}
-            <ul className="w-full space-y-3.5 mb-8">
-              {features.map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-[#C0462F]/10 text-[#C0462F] flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3.5 h-3.5" strokeWidth={2.5} />
-                  </div>
-                  <span className="text-sm md:text-base text-gray-700 leading-snug">
-                    {feature}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            {/* CTA Button and note */}
-            <div className="flex flex-col items-start">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#C0462F] text-white rounded-full px-8 py-4 font-medium hover:bg-[#A03524] hover:scale-105 transition-all inline-flex items-center justify-center shadow-md active:scale-95"
-              >
-                Demander un devis 4x4
-              </a>
-              <span className="text-xs text-gray-500 mt-3">
-                Réponse en moins de 2h sur WhatsApp
-              </span>
-            </div>
-
-          </div>
-
+    <section className="w-full bg-[#161513] py-20 md:py-24 px-6 text-white">
+      <div className="mx-auto max-w-4xl flex flex-col items-center text-center">
+        {/* Star Sparkle Icon (4-pointed concave) */}
+        <div className="mb-6 flex items-center justify-center text-white" aria-hidden="true">
+          <svg
+            className="w-6 h-6 fill-current text-white"
+            viewBox="0 0 24 24"
+          >
+            <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" />
+          </svg>
         </div>
+
+        {/* Headline */}
+        <h2 className="font-sans font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[40px] text-white leading-tight tracking-tight max-w-3xl mb-4 sm:mb-5">
+          Besoin d&apos;un itinéraire sur-mesure au départ de Marrakech ?
+        </h2>
+
+        {/* Subtitle / Description */}
+        <p className="font-sans text-sm sm:text-base md:text-[17px] text-gray-300 max-w-2xl leading-relaxed mb-8 sm:mb-10">
+          Indiquez-nous vos dates de séjour à Marrakech, vos envies et votre rythme.
+          Notre équipe basée à Kalaat M&apos;Gouna vous répond sous 24h avec un devis
+          détaillé sans engagement.
+        </p>
+
+        {/* Underlined CTA Link */}
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-sans font-medium text-base sm:text-lg text-white underline underline-offset-8 decoration-1 decoration-white/70 hover:decoration-white hover:text-white/90 transition-all cursor-pointer"
+        >
+          Demander mon devis gratuit
+        </a>
       </div>
     </section>
   );
