@@ -69,15 +69,15 @@ export default function Hero({
 
       {/* Centered Main Content */}
       <div className="relative z-20 mx-auto max-w-4xl px-4 text-center sm:px-6">
-        {/* Fraunces Serif Rotating Headline */}
-        <h1 className="font-serif font-medium text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-[1.05] tracking-tight text-center max-w-4xl mx-auto drop-shadow-xl">
+        {/* Instrument Serif Rotating Headline */}
+        <h1 className="font-serif font-normal text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-[1.05] tracking-tight text-center max-w-4xl mx-auto drop-shadow-xl">
           Découvrez le Maroc
           <br />
           à travers{" "}
           <RotatingWord
             words={["le Sahara", "l'Atlas", "les dunes", "les vallées"]}
             interval={2500}
-            className="text-[#C0462F]"
+            className="text-[#C0462F] italic"
           />
         </h1>
 
