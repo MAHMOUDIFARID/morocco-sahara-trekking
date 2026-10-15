@@ -70,7 +70,7 @@ export default function Hero({
       {/* Centered Main Content */}
       <div className="relative z-20 mx-auto max-w-4xl px-4 text-center sm:px-6">
         {/* Instrument Serif Rotating Headline */}
-        <h1 className="font-serif font-normal text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-[1.05] tracking-tight text-center max-w-4xl mx-auto drop-shadow-xl">
+        <h1 className="font-serif font-normal text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] tracking-tight text-center max-w-4xl mx-auto drop-shadow-xl">
           Découvrez le Maroc
           <br />
           à travers{" "}
@@ -82,7 +82,7 @@ export default function Hero({
         </h1>
 
         {/* Subheadline */}
-        <p className="mt-6 text-base sm:text-lg md:text-xl text-white/90 max-w-xl mx-auto leading-relaxed drop-shadow-md">
+        <p className="text-lg md:text-xl text-white/90 text-center max-w-2xl mx-auto mt-6 leading-relaxed drop-shadow-md">
           {subheadline}
         </p>
 
