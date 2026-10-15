@@ -12,7 +12,7 @@ const REASONS = [
   {
     title: "En petit comité",
     description:
-      "Jusqu’à 8 voyageurs pour une expérience plus personnelle.",
+      "Des groupes à taille humaine pour une expérience plus personnelle.",
   },
 ];
 
