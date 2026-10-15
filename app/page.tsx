@@ -5,6 +5,7 @@ import SaharaCTA from "@/components/SaharaCTA";
 import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
 import AboutGuide from "@/components/AboutGuide";
+import FourByFourOption from "@/components/FourByFourOption";
 import WhyUs from "@/components/WhyUs";
 import { ArrowRight } from "lucide-react";
 
@@ -47,6 +48,9 @@ export default function HomePage() {
 
       {/* About The Guide Section */}
       <AboutGuide />
+
+      {/* 4x4 / Accessible Option Section */}
+      <FourByFourOption />
 
       {/* Why Choose Us Section */}
       <WhyUs />
