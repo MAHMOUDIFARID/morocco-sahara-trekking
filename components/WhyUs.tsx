@@ -185,11 +185,6 @@ export default function WhyUs() {
             </svg>
           </div>
 
-          {/* Eyebrow text */}
-          <span className="font-sans font-medium text-xs md:text-sm uppercase tracking-widest text-[#C0462F] block mb-4">
-            NOTRE DIFFÉRENCE
-          </span>
-
           {/* DM Serif Display Headline */}
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-[#1a1a1a] leading-tight max-w-2xl mx-auto mb-6">
             Pourquoi nous{" "}
