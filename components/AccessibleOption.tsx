@@ -1,3 +1,5 @@
+import { ArrowUpRight } from "lucide-react";
+
 export default function AccessibleOption() {
   const whatsappMessage = encodeURIComponent(
     "Bonjour Mohamed, je suis intéressé(e) par une formule accessible sans longue marche. Pouvez-vous m'en dire plus ?"
@@ -37,9 +39,10 @@ export default function AccessibleOption() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block font-sans font-semibold text-base md:text-lg text-white border-b border-white pb-1 hover:text-[#C0462F] hover:border-[#C0462F] transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 text-base md:text-lg font-medium text-white border-b border-white/70 pb-1 hover:text-[#C0462F] hover:border-[#C0462F] transition-colors duration-200"
           >
-            Demander un devis personnalisé
+            <span>Contactez-nous</span>
+            <ArrowUpRight size={18} className="mt-0.5" />
           </a>
         </div>
 
