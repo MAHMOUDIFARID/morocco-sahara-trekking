@@ -41,7 +41,7 @@ export default function AccessibleOption() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-base md:text-lg font-medium text-white border-b border-white/70 pb-1 hover:text-[#C0462F] hover:border-[#C0462F] transition-colors duration-200"
           >
-            <span>Contacter Mohamed</span>
+            <span>Demander cette formule</span>
             <ArrowUpRight size={18} className="mt-0.5" />
           </a>
         </div>
