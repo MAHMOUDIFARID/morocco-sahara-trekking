@@ -91,7 +91,7 @@ export default function AboutGuide() {
             <div className="mt-9">
               <Link
                 href="/treks"
-                className="inline-flex min-h-10 w-fit items-center justify-center gap-2 rounded-full bg-[#1C1917] px-5 py-2.5 font-sans text-sm font-medium leading-5 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1C1917] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF9F3]"
+                className="site-button w-fit bg-[#1C1917] text-white"
               >
                 <span>Planifier votre trek avec Mohamed</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />

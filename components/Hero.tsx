@@ -90,7 +90,7 @@ export default function Hero({
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             href={primaryCtaLink}
-            className="inline-flex h-10 items-center justify-center rounded-full bg-white px-5 text-sm font-medium text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            className="site-button bg-white text-black"
           >
             {primaryCtaText}
           </Link>
@@ -98,7 +98,7 @@ export default function Hero({
             href={secondaryCtaLink}
             target={secondaryCtaLink.startsWith("http") ? "_blank" : undefined}
             rel={secondaryCtaLink.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="inline-flex h-10 items-center justify-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-5 text-sm font-medium text-white backdrop-blur-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+            className="site-button border border-white/25 bg-white/10 text-white backdrop-blur-md"
           >
             <span>{secondaryCtaText}</span>
             <ArrowUpRight className="h-3.5 w-3.5" />

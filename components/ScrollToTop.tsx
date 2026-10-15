@@ -36,7 +36,7 @@ export default function ScrollToTop() {
         onClick={scrollToTop}
         type="button"
         aria-label="Retour en haut"
-        className={`flex h-11 w-11 items-center justify-center rounded-full bg-[#1A1A1A] text-white border border-white/10 shadow-xl transition-all duration-300 hover:bg-[#262626] hover:scale-110 active:scale-95 ${
+        className={`site-icon-button bg-[#1A1A1A] text-white border border-white/10 shadow-xl transition-all duration-300 ${
           isVisible
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 translate-y-4 pointer-events-none"
@@ -51,13 +51,13 @@ export default function ScrollToTop() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Discuter sur WhatsApp"
-        className="flex h-11 w-11 items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 drop-shadow-xl"
+        className="site-icon-button drop-shadow-xl"
       >
         <Image
           src="/images/whatsapp.png"
           alt="WhatsApp"
-          width={44}
-          height={44}
+          width={40}
+          height={40}
           className="w-full h-full object-contain select-none"
         />
       </a>

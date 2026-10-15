@@ -130,10 +130,10 @@ export default function TrekCard(props: TrekCardProps) {
           <div className="mt-auto pt-2">
             <Link
               href={`/treks/${slug}`}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#C0462F] hover:text-[#9c3522] transition-colors group/link"
+              className="site-button border border-[#C0462F]/25 text-[#C0462F]"
             >
               <span>Découvrir le trek</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         )}

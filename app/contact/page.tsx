@@ -160,10 +160,10 @@ export default function ContactPage() {
                       key={type}
                       type="button"
                       onClick={() => setInquiryType(type)}
-                      className={`rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium transition cursor-pointer select-none border ${
+                      className={`site-button cursor-pointer select-none border ${
                         isSelected
-                          ? "bg-[#C0462F] text-white border-[#C0462F] shadow-sm"
-                          : "bg-gray-100 text-gray-700 border-transparent hover:bg-gray-200"
+                          ? "bg-[#C0462F] text-white border-[#C0462F]"
+                          : "bg-gray-100 text-gray-700 border-transparent"
                       }`}
                     >
                       {type}
@@ -232,7 +232,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full rounded-full border-2 border-gray-900 py-3 text-sm sm:text-base font-medium text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition duration-200 active:scale-[0.99] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="site-button w-full border-2 border-gray-900 text-[#1a1a1a] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {status === "loading" ? "Envoi en cours..." : "Envoyer"}
               </button>

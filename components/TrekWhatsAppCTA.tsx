@@ -51,7 +51,7 @@ export default function TrekWhatsAppCTA({ trekTitle, trekDuration, trekPrice }: 
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-block w-full text-center bg-[#25D366] text-white rounded-full px-6 py-3 font-medium hover:bg-[#1DA851] transition-colors"
+        className="site-button w-full bg-[#25D366] text-white"
       >
         Discuter sur WhatsApp
       </a>

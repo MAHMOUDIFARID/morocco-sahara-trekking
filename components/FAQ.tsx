@@ -137,9 +137,9 @@ export default function FAQ({
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1 text-sm md:text-base font-medium text-[#1a1a1a] hover:text-[#C0462F] transition-colors group"
+            className="site-button border border-[#1a1a1a]/20 text-[#1a1a1a]"
           >
-            <span className="border-b border-[#1a1a1a] group-hover:border-[#C0462F] pb-0.5 transition-colors">
+            <span>
               Contactez-nous
             </span>
             <ArrowUpRight size={14} />

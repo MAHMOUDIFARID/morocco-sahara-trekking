@@ -77,7 +77,7 @@ export default function SaharaCTA({
             href={buttonLink}
             target={buttonLink.startsWith("http") ? "_blank" : undefined}
             rel={buttonLink.startsWith("http") ? "noopener noreferrer" : undefined}
-            className="inline-flex items-center justify-center rounded-full bg-white text-[#1a1a1a] font-sans font-medium text-base md:text-lg px-8 py-4 shadow-lg transition-all duration-200 hover:bg-gray-100 hover:scale-105 active:scale-95 cursor-pointer"
+            className="site-button bg-white text-[#1a1a1a]"
             style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
             {buttonText}

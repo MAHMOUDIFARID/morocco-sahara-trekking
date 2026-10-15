@@ -64,7 +64,7 @@ export default function RegionsPage() {
             <div className="mt-6 pt-4 border-t border-gray-100">
               <Link
                 href="/treks"
-                className="inline-flex items-center gap-2 text-xs font-semibold text-[#1a1a1a] hover:text-[#C0462F] transition-colors"
+                className="site-button border border-[#1a1a1a]/20 text-[#1a1a1a]"
               >
                 <span>Voir les treks associés</span>
                 <ArrowRight size={14} />

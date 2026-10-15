@@ -141,10 +141,10 @@ export default function Header() {
           </a>
           <Link
             href="/treks"
-            className={`rounded-xl px-4 py-2 lg:px-5 lg:py-2.5 text-sm font-semibold transition-all hover:scale-102 active:scale-[0.98] ${
+            className={`site-button bg-white text-[#1a1a1a] ${
               isTransparent
-                ? "bg-white text-[#1a1a1a] hover:bg-gray-100 shadow-md"
-                : "bg-white text-[#1a1a1a] border border-structure/15 hover:bg-gray-100 shadow-sm"
+                ? ""
+                : "border border-structure/15"
             }`}
           >
             Explorer les Trekks
@@ -154,7 +154,7 @@ export default function Header() {
         {/* Mobile menu toggle */}
         <button
           onClick={() => setIsOpen(true)}
-          className={`md:hidden bg-transparent p-2 flex items-center justify-center ${
+          className={`site-icon-button md:hidden bg-transparent ${
             isTransparent ? "text-white" : "text-structure"
           }`}
           aria-label="Menu"
@@ -191,7 +191,7 @@ export default function Header() {
 
           <button
             onClick={() => setIsOpen(false)}
-            className="bg-transparent p-2 text-white flex items-center justify-center"
+            className="site-icon-button bg-transparent text-white"
             aria-label="Fermer le menu"
           >
             <X size={24} />
@@ -240,7 +240,7 @@ export default function Header() {
           <Link
             href="/treks"
             onClick={() => setIsOpen(false)}
-            className="w-full block text-center rounded-full bg-white text-[#1a1a1a] py-4 text-base font-semibold hover:bg-gray-100 transition shadow-md"
+            className="site-button w-full bg-white text-[#1a1a1a]"
           >
             Explorer Tous les Treks
           </Link>

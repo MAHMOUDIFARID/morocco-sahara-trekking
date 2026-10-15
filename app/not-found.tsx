@@ -24,7 +24,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
           <Link
             href="/"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-structure px-6 py-3 text-xs font-semibold text-canvas-pure shadow-subtle hover:bg-structure/90 transition-all cursor-pointer"
+            className="site-button w-full sm:w-auto bg-structure text-canvas-pure"
           >
             <ArrowLeft className="w-4 h-4" />
             Retour à l&apos;Accueil
@@ -32,7 +32,7 @@ export default function NotFound() {
 
           <Link
             href="/treks"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl border border-structure/20 bg-canvas-pure px-6 py-3 text-xs font-semibold text-structure hover:bg-canvas-subtle transition-all cursor-pointer"
+            className="site-button w-full sm:w-auto border border-structure/20 bg-canvas-pure text-structure"
           >
             Explorer les Trekks
           </Link>

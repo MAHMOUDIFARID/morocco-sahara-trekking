@@ -30,16 +30,16 @@ export default function AccessibleOption() {
           Découvrez les paysages du Maroc avec une formule confortable, adaptée à vos envies.
         </p>
 
-        {/* Link-style underlined CTA */}
+        {/* CTA */}
         <div>
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-base md:text-lg font-medium text-white border-b border-white/70 pb-1 hover:text-[#C0462F] hover:border-[#C0462F] transition-colors duration-200"
+            className="site-button border border-white/25 text-white"
           >
             <span>Demander cette formule</span>
-            <ArrowUpRight size={18} className="mt-0.5" />
+            <ArrowUpRight size={14} />
           </a>
         </div>
 

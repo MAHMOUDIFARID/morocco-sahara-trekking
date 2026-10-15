@@ -75,10 +75,10 @@ export default function HomePage() {
         <div className="mt-12 md:mt-16 flex justify-center">
           <Link
             href="/treks"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-gray-300 text-base font-medium text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all duration-200 group"
+            className="site-button border border-gray-300 text-[#1a1a1a]"
           >
             <span>Voir tous les treks</span>
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            <ArrowRight size={14} />
           </Link>
         </div>
       </section>

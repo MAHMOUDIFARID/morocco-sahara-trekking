@@ -240,7 +240,7 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 md:hidden z-50 flex items-center gap-2 px-5 py-3 rounded-full bg-[#25D366] text-white font-medium shadow-2xl hover:bg-[#1DA851] transition-colors"
+        className="site-button fixed bottom-6 right-6 md:hidden z-50 bg-[#25D366] text-white shadow-2xl"
       >
         <MessageCircle size={20} />
         Réserver

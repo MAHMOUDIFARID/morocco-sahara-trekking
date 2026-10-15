@@ -47,6 +47,26 @@
   }
 }
 
+@layer components {
+  .site-button {
+    @apply inline-flex h-10 max-w-full shrink-0 items-center justify-center gap-2 rounded-full px-5 font-sans text-sm font-medium leading-5;
+  }
+
+  .site-button svg {
+    @apply h-3.5 w-3.5 shrink-0;
+  }
+
+  .site-icon-button {
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full;
+  }
+
+  .site-button:focus-visible,
+  .site-icon-button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
 
 /* Custom styling for MDX prose content */
 .prose-custom h2 {
