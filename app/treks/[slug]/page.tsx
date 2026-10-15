@@ -55,7 +55,7 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
     notFound();
   }
 
-  const whatsappUrl = getTrekWhatsAppUrl(trek.title, trek.duration, trek.price);
+  const whatsappUrl = getTrekWhatsAppUrl(trek.title, trek.duration);
 
   const difficultyLabels: Record<string, string> = {
     Easy: "Facile",
@@ -228,7 +228,6 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
               <TrekWhatsAppCTA
                 trekTitle={trek.title}
                 trekDuration={trek.duration}
-                trekPrice={trek.price}
               />
             </div>
           </div>
