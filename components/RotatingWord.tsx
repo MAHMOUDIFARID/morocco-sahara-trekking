@@ -14,49 +14,63 @@ export default function RotatingWord({
   className = "",
 }: RotatingWordProps) {
   const [index, setIndex] = useState(0);
-  const [animationState, setAnimationState] = useState<"active" | "exiting" | "entering">("active");
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  // Append first word for a seamless, continuous upward slot-machine loop
+  const extendedWords = words.length > 1 ? [...words, words[0]] : words;
 
   useEffect(() => {
     if (words.length <= 1) return;
 
     const timer = setInterval(() => {
-      // Step 1: Slide up & fade out the current word
-      setAnimationState("exiting");
-
-      // Step 2: Swap the word and position the new word below (hidden)
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % words.length);
-        setAnimationState("entering");
-
-        // Step 3: Animate the new word sliding up into position
-        setTimeout(() => {
-          setAnimationState("active");
-        }, 20);
-      }, 300);
+      setIsTransitioning(true);
+      setIndex((prev) => prev + 1);
     }, interval);
 
     return () => clearInterval(timer);
   }, [words.length, interval]);
 
-  const getAnimationClasses = () => {
-    switch (animationState) {
-      case "exiting":
-        return "opacity-0 -translate-y-5 transition-all duration-300 ease-in";
-      case "entering":
-        return "opacity-0 translate-y-5 transition-none";
-      case "active":
-      default:
-        return "opacity-100 translate-y-0 transition-all duration-300 ease-out";
+  // When we finish transitioning to the duplicated first word, jump to 0 instantly without transition
+  useEffect(() => {
+    if (words.length > 1 && index === words.length) {
+      const resetTimer = setTimeout(() => {
+        setIsTransitioning(false);
+        setIndex(0);
+      }, 700);
+
+      return () => clearTimeout(resetTimer);
     }
-  };
+  }, [index, words.length]);
 
   return (
-    <span className={`relative inline-block ${className}`}>
+    <span
+      className={`relative inline-flex overflow-hidden align-baseline ${className}`}
+      style={{
+        height: "1.15em",
+        lineHeight: "1.15em",
+        verticalAlign: "baseline",
+      }}
+    >
       <span
-        className={`inline-block ${getAnimationClasses()}`}
-        style={{ textShadow: "0 0 25px rgba(192, 70, 47, 0.45)" }}
+        className={`flex flex-col ${
+          isTransitioning
+            ? "transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+            : ""
+        }`}
+        style={{
+          transform: `translateY(-${index * 1.15}em)`,
+          textShadow: "0 0 25px rgba(192, 70, 47, 0.45)",
+        }}
       >
-        {words[index]}
+        {extendedWords.map((word, i) => (
+          <span
+            key={i}
+            className="block whitespace-nowrap"
+            style={{ height: "1.15em", lineHeight: "1.15em" }}
+          >
+            {word}
+          </span>
+        ))}
       </span>
     </span>
   );
