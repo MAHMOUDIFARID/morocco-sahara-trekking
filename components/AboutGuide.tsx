@@ -58,7 +58,7 @@ export default function AboutGuide() {
             </p>
 
             {/* Guide at a glance */}
-            <dl className="grid grid-cols-3 gap-x-4 border-t border-[#E4DDD4] pt-7 sm:gap-x-8">
+            <dl className="grid grid-cols-3 gap-x-4 border-t border-[#E4DDD4] pt-7 text-center sm:gap-x-8">
               <div className="flex flex-col gap-2">
                 <dt className="order-2 font-sans text-xs leading-5 text-[#625C55] sm:text-sm">
                   ans d&apos;expérience
@@ -88,7 +88,7 @@ export default function AboutGuide() {
             </dl>
 
             {/* Call to Action */}
-            <div className="mt-9">
+            <div className="mt-9 flex justify-center">
               <Link
                 href="/treks"
                 className="site-button w-fit bg-[#1C1917] text-white"
