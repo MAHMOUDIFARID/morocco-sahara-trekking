@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Trek } from "@/types";
 import { getBlurData } from "@/lib/blurData";
 
@@ -15,6 +15,7 @@ export interface TrekCardProps {
   slug?: string;
   showLink?: boolean;
   priority?: boolean;
+  variant?: "default" | "editorial";
 }
 
 export default function TrekCard(props: TrekCardProps) {
@@ -63,6 +64,53 @@ export default function TrekCard(props: TrekCardProps) {
     (props.images && props.images.length > 0 ? props.images[0] : null) ||
     (trek?.images && trek.images.length > 0 ? trek.images[0] : null) ||
     "/place1.jpg";
+
+  if (props.variant === "editorial") {
+    return (
+      <article className="h-full">
+        <Link
+          href={`/treks/${slug}`}
+          aria-label={`Découvrir le trek : ${title}`}
+          className="flex h-full flex-col rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C0462F]"
+        >
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-[#E4DDD4]">
+            <Image
+              src={image}
+              alt={title}
+              fill
+              sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+              className="object-cover"
+              priority={props.priority || false}
+              quality={75}
+              placeholder="blur"
+              blurDataURL={getBlurData(image)}
+            />
+          </div>
+          <div className="flex flex-1 flex-col pt-5">
+            <p className="flex items-center gap-2 font-sans text-sm leading-5 text-[#625C55]">
+              <span>{durationText.replace(/(\d)\s*(jours?)/i, "$1 $2").toLowerCase()}</span>
+              <span aria-hidden="true">·</span>
+              <span>{difficultyLabel}</span>
+            </p>
+            <h3 className="mt-3 font-display text-xl font-medium leading-snug tracking-tight text-[#1C1917]">
+              {title}
+            </h3>
+            <p className="mt-3 line-clamp-2 font-sans text-sm leading-relaxed text-[#625C55]">
+              {description}
+            </p>
+            {showLink && (
+              <div className="mt-auto pt-6">
+                <span className="site-button border border-[#1C1917]/20 text-[#1C1917]">
+                  Découvrir le trek
+                  <ArrowUpRight aria-hidden="true" />
+                </span>
+              </div>
+            )}
+          </div>
+        </Link>
+      </article>
+    );
+  }
 
   return (
     <article className="group h-full flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm hover:shadow-xl transition-shadow duration-300 border border-gray-100 select-none">

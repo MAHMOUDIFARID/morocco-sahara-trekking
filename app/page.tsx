@@ -11,27 +11,27 @@ import { ArrowRight } from "lucide-react";
 
 const FEATURED_TREKS = [
   {
-    title: "Trek de 7 jours - Vallées d'Aït Bouguemez & Aït Bououli",
+    title: "Les vallées d’Aït Bouguemez",
     description:
-      "Ce trek de 7 jours au départ de Marrakech vous emmène au cœur du Haut Atlas central, entre les vallées authentiques d'Aït Bouguemez et d'Aït Bououli.",
+      "Marchez entre les vallées d’Aït Bouguemez et d’Aït Bououli, au cœur du Haut Atlas.",
     duration: "7 Jours",
     difficulty: "Modéré",
     image: "/treks/trek-7-jours-vallees-ait-bouguemez-ait-bououli-1.webp",
     slug: "trek-7-jours-vallees-ait-bouguemez-ait-bououli",
   },
   {
-    title: "Trek villages berbères vallée des Roses 4 jours",
+    title: "La vallée des Roses",
     description:
-      "Trekking de 4 jours au départ de Ouarzazate à travers la Vallée des Roses, les gorges d'Agouti, Amejgag et le Dadès.",
+      "Villages berbères, gorges d’Agouti et paysages du Dadès, au départ de Ouarzazate.",
     duration: "4 Jours",
     difficulty: "Facile",
     image: "/treks/trek-villages-berberes-vallee-des-roses-4-jours-1.webp",
     slug: "trek-villages-berberes-vallee-des-roses-4-jours",
   },
   {
-    title: "Trek Randonnée village Berbère Aït Bougmaz",
+    title: "Les villages d’Aït Bougmaz",
     description:
-      "Circuit randonnée de 5 jours depuis Marrakech dans la vallée d'Aït Bouguemez : gorges d'Arous, villages berbères, traces de dinosaures...",
+      "Explorez la vallée d’Aït Bouguemez, les gorges d’Arous et les sentiers berbères.",
     duration: "5 Jours",
     difficulty: "Facile",
     image: "/treks/trek-randonnee-village-berbere-ait-bougmaz-1.webp",
@@ -53,33 +53,38 @@ export default function HomePage() {
       <WhyUs />
 
       {/* Featured Treks Section */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section
+        id="featured-treks"
+        aria-labelledby="featured-treks-title"
+        className="mx-auto w-full max-w-[1248px] px-6"
+      >
         {/* Section Header */}
-        <div className="mb-12 text-left">
-          <h2 className="font-display font-semibold text-3xl md:text-4xl text-[#1a1a1a] leading-tight tracking-tight">
-            Nos programmes dans le Haut Atlas et le Sud marocain
-          </h2>
-          <p className="text-base text-gray-600 max-w-2xl mt-4 leading-relaxed font-sans">
-            Du week-end de 3 jours à la grande traversée de 10 jours, chaque itinéraire est guidé et personnalisable.
-          </p>
-        </div>
-
-        {/* 3 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {FEATURED_TREKS.slice(0, 3).map((trek) => (
-            <TrekCard key={trek.slug} {...trek} showLink={false} />
-          ))}
-        </div>
-
-        {/* Voir tous les treks button */}
-        <div className="mt-12 md:mt-16 flex justify-center">
+        <div className="mb-10 flex flex-col items-start gap-6 sm:flex-row sm:justify-between md:mb-12">
+          <div>
+            <h2
+              id="featured-treks-title"
+              className="font-display text-3xl font-medium leading-tight tracking-tight text-[#1C1917] md:text-4xl lg:text-5xl"
+            >
+              Trouvez votre prochain trek.
+            </h2>
+            <p className="mt-4 max-w-xl font-sans text-base leading-relaxed text-[#625C55]">
+              Des itinéraires guidés et personnalisables, au cœur de l’Atlas et du Sud marocain.
+            </p>
+          </div>
           <Link
             href="/treks"
-            className="site-button border border-gray-300 text-[#1a1a1a]"
+            className="site-button border border-[#1C1917]/20 text-[#1C1917] sm:mt-1 lg:mt-2"
           >
             <span>Voir tous les treks</span>
             <ArrowRight size={14} />
           </Link>
+        </div>
+
+        {/* 3 Cards Grid */}
+        <div className="grid grid-cols-1 gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+          {FEATURED_TREKS.slice(0, 3).map((trek) => (
+            <TrekCard key={trek.slug} {...trek} variant="editorial" />
+          ))}
         </div>
       </section>
 
