@@ -185,7 +185,7 @@ export default function WhyUs() {
             </svg>
           </div>
 
-          {/* Panchang Headline */}
+          {/* Headline */}
           <h2 className="font-display font-semibold text-3xl md:text-4xl lg:text-5xl text-[#1a1a1a] leading-tight max-w-2xl mx-auto mb-6">
             Pourquoi nous{" "}
             <span className="relative inline-block">

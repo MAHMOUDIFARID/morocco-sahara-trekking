@@ -36,8 +36,9 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        serif: ["var(--font-panchang)", "system-ui", "sans-serif"],
-        display: ["var(--font-panchang)", "system-ui", "sans-serif"],
+        hero: ["var(--font-clash-grotesk)", "system-ui", "sans-serif"],
+        serif: ["var(--font-clash-grotesk)", "system-ui", "sans-serif"],
+        display: ["var(--font-clash-grotesk)", "system-ui", "sans-serif"],
         mono: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
     },

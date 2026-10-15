@@ -13,12 +13,12 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const panchang = localFont({
-  src: "../public/WEB/fonts/Panchang-Variable.woff2",
-  weight: "200 800",
+const clashGrotesk = localFont({
+  src: "../public/fonts/WEB/fonts/ClashGrotesk-Variable.woff2",
+  weight: "200 700",
   style: "normal",
   display: "swap",
-  variable: "--font-panchang",
+  variable: "--font-clash-grotesk",
 });
 
 export const metadata: Metadata = {
@@ -58,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} ${panchang.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${clashGrotesk.variable}`}>
       <body className={`${inter.className} flex min-h-screen flex-col font-sans text-structure antialiased selection:bg-accent selection:text-canvas-pure`}>
         <TopBar />
         <Header />
