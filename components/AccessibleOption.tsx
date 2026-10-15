@@ -1,6 +1,6 @@
-export default function FourByFourOption() {
+export default function AccessibleOption() {
   const whatsappMessage = encodeURIComponent(
-    "Bonjour Mohamed, je suis intéressé(e) par l'option 4x4 sans randonnée. Pouvez-vous m'en dire plus ?"
+    "Bonjour Mohamed, je suis intéressé(e) par une formule accessible sans longue marche. Pouvez-vous m'en dire plus ?"
   );
   const whatsappUrl = `https://wa.me/212672058267?text=${whatsappMessage}`;
 
@@ -25,7 +25,7 @@ export default function FourByFourOption() {
 
         {/* Centered subheadline */}
         <p className="font-sans text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto mb-10">
-          Pas de souci ! Nous proposons une formule en 4×4 qui vous permet de
+          Pas de souci ! Nous proposons une formule confortable et accessible qui vous permet de
           découvrir le désert, les dunes et les villages berbères sans effort.
           Idéal pour les familles avec enfants, les personnes âgées, ou
           simplement ceux qui préfèrent le confort.
@@ -39,7 +39,7 @@ export default function FourByFourOption() {
             rel="noopener noreferrer"
             className="inline-block font-sans font-semibold text-base md:text-lg text-white border-b border-white pb-1 hover:text-[#C0462F] hover:border-[#C0462F] transition-colors duration-200"
           >
-            Demander un devis 4×4
+            Demander un devis personnalisé
           </a>
         </div>
 
