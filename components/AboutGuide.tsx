@@ -57,41 +57,41 @@ export default function AboutGuide() {
               Originaire de Kelaat M&apos;Gouna, au cœur de la Vallée des Roses, Mohamed a grandi là où les montagnes de l&apos;Atlas rencontrent l&apos;immensité du désert. Guide de montagne diplômé et certifié, il met aujourd&apos;hui plus de vingt ans d&apos;expérience au service des voyageurs en quête d&apos;authenticité. Des sommets du Haut Atlas aux dunes dorées du Sahara, il vous ouvre les portes d&apos;un Maroc intime, loin des sentiers battus, en partageant avec générosité sa connaissance du territoire, de ses habitants et de ses traditions.
             </p>
 
-            {/* Stats Row */}
-            <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 pt-6 border-t border-black/5">
-              <div>
-                <div className="text-3xl md:text-4xl font-bold text-[#1a1a1a]">
+            {/* Guide at a glance */}
+            <dl className="grid grid-cols-3 gap-x-4 border-t border-[#E4DDD4] pt-7 sm:gap-x-8">
+              <div className="flex flex-col gap-2">
+                <dt className="order-2 font-sans text-xs leading-5 text-[#625C55] sm:text-sm">
+                  ans d&apos;expérience
+                </dt>
+                <dd className="order-1 font-display text-3xl font-medium leading-none tracking-tight text-[#1C1917] tabular-nums md:text-4xl">
                   <CountUp end={20} suffix="+" />
-                </div>
-                <div className="text-[10px] md:text-sm text-gray-500 uppercase tracking-wide mt-2 whitespace-nowrap font-medium">
-                  Ans d&apos;expérience
-                </div>
+                </dd>
               </div>
 
-              <div className="border-l border-gray-200 pl-8">
-                <div className="text-3xl md:text-4xl font-bold text-[#1a1a1a]">
+              <div className="flex flex-col gap-2">
+                <dt className="order-2 font-sans text-xs leading-5 text-[#625C55] sm:text-sm">
+                  programmes de trek
+                </dt>
+                <dd className="order-1 font-display text-3xl font-medium leading-none tracking-tight text-[#1C1917] tabular-nums md:text-4xl">
                   <CountUp end={17} />
-                </div>
-                <div className="text-[10px] md:text-sm text-gray-500 uppercase tracking-wide mt-2 whitespace-nowrap font-medium">
-                  Programmes de trek
-                </div>
+                </dd>
               </div>
 
-              <div className="border-l border-gray-200 pl-8">
-                <div className="text-3xl md:text-4xl font-bold text-[#1a1a1a]">
+              <div className="flex flex-col gap-2">
+                <dt className="order-2 font-sans text-xs leading-5 text-[#625C55] sm:text-sm">
+                  guide local
+                </dt>
+                <dd className="order-1 font-display text-3xl font-medium leading-none tracking-tight text-[#1C1917] tabular-nums md:text-4xl">
                   <CountUp end={100} suffix="%" />
-                </div>
-                <div className="text-[10px] md:text-sm text-gray-500 uppercase tracking-wide mt-2 whitespace-nowrap font-medium">
-                  Guide local
-                </div>
+                </dd>
               </div>
-            </div>
+            </dl>
 
             {/* Call to Action */}
-            <div className="mt-8">
+            <div className="mt-9">
               <Link
                 href="/treks"
-                className="inline-flex items-center gap-1 text-sm font-medium text-gray-900 hover:text-black border-b border-gray-900 pb-0.5 transition-colors w-fit"
+                className="inline-flex min-h-10 w-fit items-center justify-center gap-2 rounded-full bg-[#1C1917] px-5 py-2.5 font-sans text-sm font-medium leading-5 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1C1917] focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDF9F3]"
               >
                 <span>Planifier votre trek avec Mohamed</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
