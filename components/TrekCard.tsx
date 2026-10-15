@@ -92,7 +92,7 @@ export default function TrekCard(props: TrekCardProps) {
               <span aria-hidden="true">·</span>
               <span>{difficultyLabel}</span>
             </p>
-            <h3 className="mt-3 font-display text-xl font-medium leading-snug tracking-tight text-[#1C1917]">
+            <h3 className="mt-3 line-clamp-2 font-display text-xl font-medium leading-snug tracking-tight text-[#1C1917]">
               {title}
             </h3>
             <p className="mt-3 line-clamp-2 font-sans text-sm leading-relaxed text-[#625C55]">
