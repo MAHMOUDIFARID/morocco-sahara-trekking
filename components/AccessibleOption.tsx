@@ -20,17 +20,14 @@ export default function AccessibleOption() {
           </svg>
         </div>
 
-        {/* Big bold headline */}
-        <h2 className="font-display font-semibold text-3xl md:text-4xl lg:text-5xl text-white leading-tight max-w-2xl mx-auto mb-5">
-          Vous ne pouvez pas marcher longtemps ?
+        {/* Headline */}
+        <h2 className="font-display font-medium text-2xl md:text-3xl lg:text-4xl text-white leading-tight max-w-2xl mx-auto mb-5">
+          L’aventure, à votre rythme
         </h2>
 
         {/* Centered subheadline */}
         <p className="font-sans text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto mb-8">
-          Pas de souci ! Nous proposons une formule confortable et accessible qui vous permet de
-          découvrir le désert, les dunes et les villages berbères sans effort.
-          Idéal pour les familles avec enfants, les personnes âgées, ou
-          simplement ceux qui préfèrent le confort.
+          Découvrez les paysages du Maroc avec une formule confortable, adaptée à vos envies.
         </p>
 
         {/* Link-style underlined CTA */}
