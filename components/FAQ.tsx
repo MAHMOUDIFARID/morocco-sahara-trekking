@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { Plus, X, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import TitleDecor from "./TitleDecor";
 
 export interface FAQItem {
   question: string;
@@ -63,7 +62,6 @@ export default function FAQ({
       <div className="mx-auto max-w-[800px]">
         {/* Redesigned Centered Headline */}
         <div className="mb-12 text-center">
-          <TitleDecor className="mb-4" />
           <h2 className="text-center text-3xl sm:text-5xl md:text-6xl font-display leading-tight tracking-tight whitespace-nowrap">
             <span className="text-[#1a1a1a] pr-2">Questions</span>
             <span className="text-white bg-[#C0462F] px-3 sm:px-4 py-1 inline-block">Fréquentes</span>

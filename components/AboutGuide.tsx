@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import CountUp from "@/components/CountUp";
 import { getBlurData } from "@/lib/blurData";
-import TitleDecor from "@/components/TitleDecor";
 
 export default function AboutGuide() {
   return (
@@ -44,7 +43,6 @@ export default function AboutGuide() {
 
           {/* RIGHT COLUMN: Text & Stats */}
           <div className="flex flex-col justify-center">
-            <TitleDecor align="left" className="mb-4" />
 
             {/* Headline */}
             <h2 className="font-display text-2xl md:text-3xl lg:text-4xl text-[#1a1a1a] leading-tight mb-6">

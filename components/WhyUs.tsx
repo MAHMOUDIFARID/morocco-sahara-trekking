@@ -1,5 +1,3 @@
-import TitleDecor from "./TitleDecor";
-
 function HandDrawnMountain({ className = "w-7 h-7" }: { className?: string }) {
   return (
     <svg
@@ -186,9 +184,6 @@ export default function WhyUs() {
               />
             </svg>
           </div>
-
-          {/* Decorative Marks above Eyebrow */}
-          <TitleDecor className="mb-4" />
 
           {/* Eyebrow text */}
           <span className="font-sans font-medium text-xs md:text-sm uppercase tracking-widest text-[#C0462F] block mb-4">
