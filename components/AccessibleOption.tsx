@@ -7,10 +7,10 @@ export default function AccessibleOption() {
   const whatsappUrl = `https://wa.me/212672058267?text=${whatsappMessage}`;
 
   return (
-    <section className="w-full bg-[#0F0F0F] py-24 md:py-32 px-6">
+    <section className="w-full bg-[#0F0F0F] py-14 md:py-20 px-6">
       <div className="max-w-3xl mx-auto text-center">
         {/* Sparkle icon at the top */}
-        <div className="flex justify-center mb-6" aria-hidden="true">
+        <div className="flex justify-center mb-4" aria-hidden="true">
           <svg
             viewBox="0 0 24 24"
             fill="currentColor"
@@ -21,12 +21,12 @@ export default function AccessibleOption() {
         </div>
 
         {/* Big bold headline */}
-        <h2 className="font-sans font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-tight max-w-2xl mx-auto mb-6">
+        <h2 className="font-sans font-bold text-3xl md:text-4xl lg:text-5xl text-white leading-tight max-w-2xl mx-auto mb-5">
           Vous ne pouvez pas marcher longtemps ?
         </h2>
 
         {/* Centered subheadline */}
-        <p className="font-sans text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto mb-10">
+        <p className="font-sans text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto mb-8">
           Pas de souci ! Nous proposons une formule confortable et accessible qui vous permet de
           découvrir le désert, les dunes et les villages berbères sans effort.
           Idéal pour les familles avec enfants, les personnes âgées, ou
@@ -47,7 +47,7 @@ export default function AccessibleOption() {
         </div>
 
         {/* Small note below CTA */}
-        <p className="font-sans text-xs md:text-sm text-gray-500 mt-4">
+        <p className="font-sans text-xs md:text-sm text-gray-500 mt-3">
           Réponse en moins de 2h sur WhatsApp
         </p>
       </div>
