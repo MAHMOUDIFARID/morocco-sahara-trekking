@@ -56,7 +56,7 @@ export default function SaharaCTA({
 
         {/* Headline */}
         <h2
-          className="font-display text-white text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-normal max-w-[850px] mx-auto text-balance drop-shadow-xl"
+          className="font-display font-semibold text-white text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-normal max-w-[850px] mx-auto text-balance drop-shadow-xl"
         >
           {headline}
         </h2>

@@ -21,7 +21,7 @@ export default function AccessibleOption() {
         </div>
 
         {/* Big bold headline */}
-        <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-white leading-tight max-w-2xl mx-auto mb-5">
+        <h2 className="font-display font-semibold text-3xl md:text-4xl lg:text-5xl text-white leading-tight max-w-2xl mx-auto mb-5">
           Vous ne pouvez pas marcher longtemps ?
         </h2>
 

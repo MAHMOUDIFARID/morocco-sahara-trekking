@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, DM_Serif_Display } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,20 +13,12 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+const panchang = localFont({
+  src: "../public/WEB/fonts/Panchang-Variable.woff2",
+  weight: "200 800",
+  style: "normal",
   display: "swap",
-  variable: "--font-instrument-serif",
-});
-
-const dmSerif = DM_Serif_Display({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  display: "swap",
-  variable: "--font-dm-serif",
+  variable: "--font-panchang",
 });
 
 export const metadata: Metadata = {
@@ -65,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} ${instrumentSerif.variable} ${dmSerif.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${panchang.variable}`}>
       <body className={`${inter.className} flex min-h-screen flex-col font-sans text-structure antialiased selection:bg-accent selection:text-canvas-pure`}>
         <TopBar />
         <Header />

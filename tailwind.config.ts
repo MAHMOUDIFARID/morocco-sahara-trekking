@@ -36,8 +36,8 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        serif: ["var(--font-instrument-serif)", "Georgia", "serif"],
-        display: ["var(--font-dm-serif)", "Georgia", "serif"],
+        serif: ["var(--font-panchang)", "system-ui", "sans-serif"],
+        display: ["var(--font-panchang)", "system-ui", "sans-serif"],
         mono: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
     },

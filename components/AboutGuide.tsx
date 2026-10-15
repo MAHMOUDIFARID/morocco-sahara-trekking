@@ -35,7 +35,7 @@ export default function AboutGuide() {
                 height={20}
                 className="w-5 h-5 shrink-0"
               />
-              <span className="font-sans text-xs sm:text-sm italic font-medium text-gray-700 whitespace-nowrap">
+              <span className="font-sans text-xs sm:text-sm font-medium text-gray-700 whitespace-nowrap">
                 Guide certifié
               </span>
             </div>
@@ -45,9 +45,9 @@ export default function AboutGuide() {
           <div className="flex flex-col justify-center">
 
             {/* Headline */}
-            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl text-[#1a1a1a] leading-tight mb-6">
-              <span className="italic">Mohamed,</span>{" "}
-              <span className="not-italic">
+            <h2 className="font-display font-semibold text-2xl md:text-3xl lg:text-4xl text-[#1a1a1a] leading-tight mb-6">
+              <span>Mohamed,</span>{" "}
+              <span>
                 guide de montagne et de désert certifié
               </span>
             </h2>

@@ -62,7 +62,7 @@ export default function FAQ({
       <div className="mx-auto max-w-[800px]">
         {/* Redesigned Centered Headline */}
         <div className="mb-12 text-center">
-          <h2 className="text-center text-3xl sm:text-5xl md:text-6xl font-display leading-tight tracking-tight whitespace-nowrap">
+          <h2 className="text-center text-3xl sm:text-5xl md:text-6xl font-display font-semibold leading-tight tracking-tight whitespace-nowrap">
             <span className="text-[#1a1a1a] pr-2">Questions</span>
             <span className="text-white bg-[#C0462F] px-3 sm:px-4 py-1 inline-block">Fréquentes</span>
           </h2>

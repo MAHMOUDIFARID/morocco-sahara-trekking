@@ -35,7 +35,7 @@ const customComponents = {
   ),
   blockquote: (props: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
-      className="my-6 border-l-2 border-accent bg-canvas-subtle p-4 italic text-structure/80 rounded-r-lg"
+      className="my-6 border-l-2 border-accent bg-canvas-subtle p-4 text-structure/80 rounded-r-lg"
       {...props}
     />
   ),
