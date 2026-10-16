@@ -3,11 +3,11 @@ import Image from "next/image";
 export function getTrekWhatsAppUrl(trekTitle: string, trekDuration: number) {
   const phone = "212672058267"; // Mohamed's WhatsApp number
 
-  const message = `Bonjour Mohamed 👋,
+  const message = `Bonjour Mohamed,
 
 Je suis intéressé(e) par le trek suivant :
-📌 ${trekTitle}
-⏱️ Durée : ${trekDuration} jours
+${trekTitle}
+Durée : ${trekDuration} jours
 
 Pourriez-vous me donner plus d'informations (dates disponibles, niveau requis, ce qui est inclus) ?
 
