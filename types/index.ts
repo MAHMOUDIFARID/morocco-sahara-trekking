@@ -1,5 +1,10 @@
 export type DifficultyLevel = "Easy" | "Moderate" | "Hard" | "Facile" | "Modéré" | "Difficile" | string;
 
+export interface TravelPhoto {
+  src: string;
+  alt: string;
+}
+
 export interface Coordinates {
   lat: number;
   lng: number;

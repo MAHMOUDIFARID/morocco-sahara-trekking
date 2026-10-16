@@ -10,9 +10,11 @@ import WhyUs from "@/components/WhyUs";
 import TravelAlbum from "@/components/TravelAlbum";
 import { ArrowRight } from "lucide-react";
 import { getFeaturedTreks } from "@/lib/mdx";
+import { getTravelPhotos } from "@/lib/travelPhotos";
 
 export default function HomePage() {
   const featuredTreks = getFeaturedTreks().slice(0, 3);
+  const travelPhotos = getTravelPhotos();
 
   return (
     <div className="flex flex-col gap-20">
@@ -76,7 +78,7 @@ export default function HomePage() {
       <SaharaCTA />
 
       {/* Travel Photo Album */}
-      <TravelAlbum />
+      <TravelAlbum photos={travelPhotos} />
     </div>
   );
 }
