@@ -4,7 +4,15 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
-import { Menu, X, PhoneCall } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+
+const navigationLinks = [
+  { href: "/treks", label: "Tous les Treks" },
+  { href: "/regions", label: "Régions" },
+  { href: "/guide", label: "Guide" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -90,71 +98,43 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium transition-colors">
-          <Link
-            href="/treks"
-            className={`transition-colors duration-200 ${
-              isTransparent
-                ? "text-white/90 hover:text-white drop-shadow-sm"
-                : "text-structure/75 hover:text-structure"
-            }`}
-          >
-            Trekks dans le Désert
-          </Link>
-
-          <Link
-            href="/#about"
-            className={`transition-colors duration-200 ${
-              isTransparent
-                ? "text-white/90 hover:text-white drop-shadow-sm"
-                : "text-structure/75 hover:text-structure"
-            }`}
-          >
-            À propos du Sahara
-          </Link>
-          <Link
-            href="/contact"
-            className={`transition-colors duration-200 ${
-              isTransparent
-                ? "text-white/90 hover:text-white drop-shadow-sm"
-                : "text-structure/75 hover:text-structure"
-            }`}
-          >
-            Contact
-          </Link>
+        <nav className="hidden lg:flex items-center gap-8 text-sm font-medium transition-colors">
+          {navigationLinks.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className={`whitespace-nowrap transition-colors duration-200 ${
+                isTransparent
+                  ? "text-white/90 hover:text-white drop-shadow-sm"
+                  : "text-structure/75 hover:text-structure"
+              }`}
+            >
+              {label}
+            </Link>
+          ))}
         </nav>
 
-        {/* Action Button & Contact */}
-        <div className="hidden md:flex items-center gap-5">
+        {/* WhatsApp CTA */}
+        <div className="hidden lg:flex items-center">
           <a
             href="https://wa.me/212672058267"
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center gap-1.5 text-xs font-semibold transition-colors duration-200 ${
-              isTransparent
-                ? "text-white/90 hover:text-white drop-shadow-sm"
-                : "text-structure/70 hover:text-structure"
-            }`}
-          >
-            <PhoneCall className={`h-4 w-4 ${isTransparent ? "text-white" : "text-structure/80"}`} />
-            <span>+212 672 058 267</span>
-          </a>
-          <Link
-            href="/treks"
             className={`site-button bg-white text-[#1a1a1a] ${
               isTransparent
                 ? ""
                 : "border border-structure/15"
             }`}
           >
-            Explorer les Trekks
-          </Link>
+            Parlons de votre trek
+            <ArrowUpRight aria-hidden="true" />
+          </a>
         </div>
 
         {/* Mobile menu toggle */}
         <button
           onClick={() => setIsOpen(true)}
-          className={`site-icon-button md:hidden bg-transparent ${
+          className={`site-icon-button lg:hidden bg-transparent ${
             isTransparent ? "text-white" : "text-structure"
           }`}
           aria-label="Menu"
@@ -165,7 +145,7 @@ export default function Header() {
 
       {/* Fullscreen Mobile Menu (100dvh) */}
       <div
-        className={`fixed inset-0 z-[999] w-screen w-full h-screen h-[100dvh] bg-[#1a1a1a] flex flex-col justify-between overflow-y-auto transition-all duration-300 ease-out md:hidden ${
+        className={`fixed inset-0 z-[999] w-screen w-full h-screen h-[100dvh] bg-[#1a1a1a] flex flex-col justify-between overflow-y-auto transition-all duration-300 ease-out lg:hidden ${
           isOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
@@ -200,50 +180,30 @@ export default function Header() {
 
         {/* Navigation links (vertical) */}
         <nav className="flex flex-col px-6 py-6 divide-y divide-white/10">
-          <Link
-            href="/treks"
-            onClick={() => setIsOpen(false)}
-            className="text-2xl sm:text-3xl font-medium text-white py-4 block hover:text-white/80 transition-colors"
-          >
-            Trekks dans le Désert
-          </Link>
-
-          <Link
-            href="/#about"
-            onClick={() => setIsOpen(false)}
-            className="text-2xl sm:text-3xl font-medium text-white py-4 block hover:text-white/80 transition-colors"
-          >
-            À propos du Sahara
-          </Link>
-
-          <Link
-            href="/contact"
-            onClick={() => setIsOpen(false)}
-            className="text-2xl sm:text-3xl font-medium text-white py-4 block hover:text-white/80 transition-colors"
-          >
-            Contact
-          </Link>
+          {navigationLinks.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={() => setIsOpen(false)}
+              className="text-2xl sm:text-3xl font-medium text-white py-4 block hover:text-white/80 transition-colors"
+            >
+              {label}
+            </Link>
+          ))}
         </nav>
 
-        {/* Bottom CTA & Direct WhatsApp link */}
-        <div className="mt-auto px-6 pb-8 pt-4 shrink-0 space-y-4">
+        {/* WhatsApp CTA */}
+        <div className="mt-auto px-6 pb-8 pt-4 shrink-0">
           <a
             href="https://wa.me/212672058267"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 text-sm text-white/70 hover:text-white transition py-2"
-          >
-            <PhoneCall className="h-4 w-4" />
-            <span>+212 672 058 267</span>
-          </a>
-
-          <Link
-            href="/treks"
             onClick={() => setIsOpen(false)}
             className="site-button w-full bg-white text-[#1a1a1a]"
           >
-            Explorer Tous les Treks
-          </Link>
+            Parlons de votre trek
+            <ArrowUpRight aria-hidden="true" />
+          </a>
         </div>
       </div>
     </header>
