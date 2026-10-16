@@ -2,40 +2,24 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowLeft, ArrowDown, ArrowUpRight, Check, Minus } from "lucide-react";
 import { getAllTreks, getTrekBySlug } from "@/lib/mdx";
 import MDXContent from "@/components/MDXContent";
+import TrekGallery from "@/components/TrekGallery";
 import TrekWhatsAppCTA, { getTrekWhatsAppUrl } from "@/components/TrekWhatsAppCTA";
 import { getBlurData } from "@/lib/blurData";
-import {
-  Clock,
-  MapPin,
-  CheckCircle,
-  XCircle,
-  ChevronRight,
-  Layers,
-  MessageCircle,
-} from "lucide-react";
 
 interface TrekPageProps {
-  params: {
-    slug: string;
-  };
+  params: { slug: string };
 }
 
 export function generateStaticParams() {
-  const treks = getAllTreks();
-  return treks.map((trek) => ({
-    slug: trek.slug,
-  }));
+  return getAllTreks().map((trek) => ({ slug: trek.slug }));
 }
 
 export function generateMetadata({ params }: TrekPageProps): Metadata {
   const trek = getTrekBySlug(params.slug);
-  if (!trek) {
-    return {
-      title: "Trekk non trouvé | MOROCCO SAHARA TREKKING",
-    };
-  }
+  if (!trek) return { title: "Trekk non trouvé | MOROCCO SAHARA TREKKING" };
 
   return {
     title: `${trek.title} | MOROCCO SAHARA TREKKING`,
@@ -43,207 +27,112 @@ export function generateMetadata({ params }: TrekPageProps): Metadata {
     openGraph: {
       title: trek.title,
       description: trek.description,
-      images: trek.images && trek.images.length > 0 ? [trek.images[0]] : ["/logo.png"],
+      images: trek.images?.length ? [trek.images[0]] : ["/logo.png"],
     },
   };
 }
 
 export default function TrekDetailPage({ params }: TrekPageProps) {
   const trek = getTrekBySlug(params.slug);
-
-  if (!trek) {
-    notFound();
-  }
+  if (!trek) notFound();
 
   const whatsappUrl = getTrekWhatsAppUrl(trek.title, trek.duration);
-
   const difficultyLabels: Record<string, string> = {
-    Easy: "Facile",
-    Moderate: "Modéré",
-    Hard: "Difficile",
+    Easy: "Facile", Moderate: "Modéré", Hard: "Difficile",
   };
-
-  const getDifficultyBadge = (difficulty: string) => {
-    switch (difficulty) {
-      case "Hard":
-        return "bg-accent/10 text-accent border-accent/30 font-semibold";
-      case "Moderate":
-        return "bg-canvas-pure text-structure border-structure/30 font-medium";
-      case "Easy":
-      default:
-        return "bg-canvas-pure text-structure/80 border-structure/15 font-normal";
-    }
-  };
+  const coverImage = trek.images[0] || "/treks/placeholder.webp";
 
   return (
-    <div className="pb-24">
-      {/* Breadcrumbs */}
-      <nav className="bg-white/40 backdrop-blur-xs border-b border-structure/10 py-3">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <ol className="flex items-center space-x-2 text-xs text-structure/60">
-            <li>
-              <Link href="/" className="hover:text-structure transition-colors">
-                Accueil
-              </Link>
-            </li>
-            <li>
-              <ChevronRight className="h-3 w-3 text-structure/30" />
-            </li>
-            <li>
-              <Link href="/treks" className="hover:text-structure transition-colors">
-                Trekks dans le Désert
-              </Link>
-            </li>
-            <li>
-              <ChevronRight className="h-3 w-3 text-structure/30" />
-            </li>
-            <li className="font-semibold text-structure truncate max-w-xs sm:max-w-md">
-              {trek.title}
-            </li>
-          </ol>
-        </div>
+    <article className="mx-auto max-w-7xl px-6 pb-28 pt-7 sm:px-8 lg:pt-10">
+      <nav aria-label="Fil d’Ariane">
+        <Link href="/treks" className="inline-flex items-center gap-2 text-sm text-[#625C55]">
+          <ArrowLeft size={14} aria-hidden="true" />
+          Tous les treks
+        </Link>
       </nav>
 
-      {/* Main Container */}
-      <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
-        {/* Header Block */}
-        <div className="mb-8">
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span className="rounded-full bg-structure/5 px-3 py-1 text-[11px] font-semibold text-structure border border-structure/15">
-              {trek.category}
-            </span>
-            <span className="rounded-full bg-structure/5 px-3 py-1 text-[11px] font-medium text-structure/80 border border-structure/10">
-              {trek.region}
-            </span>
-            <span className={`rounded-full px-3 py-1 text-[11px] border ${getDifficultyBadge(trek.difficulty)}`}>
-              Difficulté {difficultyLabels[trek.difficulty] || trek.difficulty}
-            </span>
-          </div>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-structure tracking-tight leading-tight">
+      <section aria-labelledby="trek-title" className="mt-9 grid items-center gap-9 lg:mt-12 lg:grid-cols-2 lg:gap-14 xl:gap-20">
+        <div className="min-w-0">
+          <p className="mb-5 text-sm text-[#625C55]">{trek.category}</p>
+          <h1 id="trek-title" className="font-display text-4xl font-medium leading-[1.08] tracking-tight text-[#1C1917] sm:text-5xl lg:text-[2.75rem] xl:text-5xl">
             {trek.title}
           </h1>
-
-          <p className="mt-3 text-sm sm:text-base text-structure/70 max-w-4xl leading-relaxed">
-            {trek.description}
-          </p>
-        </div>
-
-        {/* Cover Image */}
-        <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8 shadow-card border border-structure/10">
-          <Image
-            src={trek.images[0] || "/treks/placeholder.webp"}
-            alt={trek.title}
-            fill
-            sizes="(max-width: 1200px) 100vw, 1200px"
-            className="object-cover"
-            priority={true}
-            quality={80}
-            placeholder="blur"
-            blurDataURL={getBlurData(trek.images[0])}
-          />
-        </div>
-
-        {/* Key Information Ribbon */}
-        <div className="mb-12 grid grid-cols-1 sm:grid-cols-3 gap-4 rounded-2xl bg-canvas-pure p-6 shadow-card border border-structure/10">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-structure/5 text-structure">
-              <Clock className="h-5 w-5 text-structure/70" />
-            </div>
-            <div>
-              <span className="text-[10px] uppercase text-structure/50 tracking-widest font-semibold block">Durée</span>
-              <p className="text-sm font-bold text-structure">{trek.duration} {trek.duration > 1 ? "Jours" : "Jour"}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-structure/5 text-structure">
-              <Layers className="h-5 w-5 text-structure/70" />
-            </div>
-            <div>
-              <span className="text-[10px] uppercase text-structure/50 tracking-widest font-semibold block">Difficulté</span>
-              <p className="text-sm font-bold text-structure">{difficultyLabels[trek.difficulty] || trek.difficulty}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-structure/5 text-structure">
-              <MapPin className="h-5 w-5 text-structure/70" />
-            </div>
-            <div>
-              <span className="text-[10px] uppercase text-structure/50 tracking-widest font-semibold block">Région</span>
-              <p className="text-sm font-bold text-structure">{trek.region}</p>
-            </div>
+          <p className="mt-6 max-w-xl text-base leading-7 text-[#625C55]">{trek.description}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-5">
+            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="site-button hidden bg-[#1C1917] text-white lg:inline-flex">
+              Parlons de ce trek
+              <ArrowUpRight aria-hidden="true" />
+            </a>
+            <a href="#programme" className="inline-flex items-center gap-2 text-sm font-medium text-[#1C1917] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
+              Voir le programme
+              <ArrowDown size={14} aria-hidden="true" />
+            </a>
           </div>
         </div>
+        <figure className="relative aspect-[5/4] overflow-hidden rounded-2xl bg-[#E4DDD4] lg:aspect-[4/5] xl:aspect-[5/4]">
+          <Image src={coverImage} alt={trek.title} fill sizes="(max-width: 1023px) 100vw, 50vw" className="object-cover" priority quality={85} placeholder="blur" blurDataURL={getBlurData(coverImage)} />
+        </figure>
+      </section>
 
-        {/* Content & Sidebar Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Main Column */}
-          <div className="lg:col-span-8 space-y-10">
-            {/* MDX Body Content */}
-            <div className="bg-canvas-pure p-8 rounded-2xl border border-structure/10 shadow-card">
-              <MDXContent source={trek.content} />
-            </div>
-
-            {/* Inclusions & Exclusions */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Included */}
-              <div className="rounded-2xl bg-canvas-pure p-6 border border-structure/10 shadow-card">
-                <h3 className="text-sm font-bold text-structure mb-4 flex items-center gap-2">
-                  <CheckCircle className="h-4 w-4 text-accent" />
-                  Ce qui est inclus
-                </h3>
-                <ul className="space-y-2.5 text-xs sm:text-sm text-structure/75">
-                  {trek.included.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5">
-                      <span className="mt-1.5 h-1 w-1 rounded-full bg-structure shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Not Included */}
-              <div className="rounded-2xl bg-canvas-pure p-6 border border-structure/10 shadow-card">
-                <h3 className="text-sm font-bold text-structure/70 mb-4 flex items-center gap-2">
-                  <XCircle className="h-4 w-4 text-structure/40" />
-                  Ce qui n&apos;est pas inclus
-                </h3>
-                <ul className="space-y-2.5 text-xs sm:text-sm text-structure/60">
-                  {trek.notIncluded.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5">
-                      <span className="mt-1.5 h-1 w-1 rounded-full bg-structure/40 shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Sidebar / WhatsApp CTA */}
-          <div className="lg:col-span-4">
-            <div className="sticky top-24">
-              <TrekWhatsAppCTA
-                trekTitle={trek.title}
-                trekDuration={trek.duration}
-              />
-            </div>
-          </div>
+      <dl className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4 border-y border-[#E4DDD4] py-6 text-sm text-[#625C55] lg:mt-14">
+        <div>
+          <dt className="sr-only">Durée</dt>
+          <dd className="font-medium text-[#1C1917]">{trek.duration} {trek.duration > 1 ? "jours" : "jour"}</dd>
         </div>
+        <div>
+          <dt className="sr-only">Région</dt>
+          <dd className="flex items-center gap-7"><span aria-hidden="true" className="text-[#B8ADA1]">·</span>{trek.region}</dd>
+        </div>
+        <div>
+          <dt className="sr-only">Difficulté</dt>
+          <dd className="flex items-center gap-7"><span aria-hidden="true" className="text-[#B8ADA1]">·</span>Niveau {(difficultyLabels[trek.difficulty] || trek.difficulty).toLowerCase()}</dd>
+        </div>
+      </dl>
+
+      <div className="mt-14 grid items-start gap-14 lg:mt-20 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-20 xl:gap-28">
+        <div className="min-w-0">
+          <div>
+            <MDXContent source={trek.content} />
+          </div>
+
+          <section aria-labelledby="practical-title" className="mt-16 border-t border-[#E4DDD4] pt-10">
+            <h2 id="practical-title" className="font-display text-3xl font-medium tracking-tight">Les détails pratiques.</h2>
+            <div className="mt-8 grid gap-10 sm:grid-cols-2">
+              {[
+                { title: "Ce qui est inclus", items: trek.included, icon: Check },
+                { title: "Ce qui n’est pas inclus", items: trek.notIncluded, icon: Minus },
+              ].map(({ title, items, icon: Icon }) => (
+                <div key={title}>
+                  <h3 className="font-display text-xl font-medium">{title}</h3>
+                  <ul className="mt-5 space-y-4 text-sm leading-6 text-[#625C55]">
+                    {items.map((item, index) => (
+                      <li key={index} className="flex items-start gap-3">
+                        <Icon size={16} strokeWidth={1.5} aria-hidden="true" className="mt-1 shrink-0 text-[#625C55]" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="mt-10 border-t border-[#E4DDD4] pt-6">
+              <h3 className="font-display text-xl font-medium">Point de rendez-vous</h3>
+              <p className="mt-3 text-sm leading-6 text-[#625C55]">{trek.meetingPoint}</p>
+            </div>
+          </section>
+        </div>
+
+        <aside aria-label="Préparer ce trek avec Mohamed" className="lg:sticky lg:top-28">
+          <TrekWhatsAppCTA trekTitle={trek.title} trekDuration={trek.duration} />
+        </aside>
       </div>
 
-      {/* Sticky WhatsApp button — mobile only */}
-      <a
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="site-button fixed bottom-6 right-6 md:hidden z-50 bg-[#25D366] text-white shadow-2xl"
-      >
-        <MessageCircle size={20} />
-        Réserver
+      {trek.images.length > 0 && <TrekGallery images={trek.images} title={trek.title} />}
+
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="site-button fixed bottom-6 left-6 z-50 bg-[#1C1917] text-white lg:hidden">
+        Parlons de ce trek
+        <ArrowUpRight aria-hidden="true" />
       </a>
-    </div>
+    </article>
   );
 }

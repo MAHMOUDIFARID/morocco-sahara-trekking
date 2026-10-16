@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 type Props = {
   trekTitle: string;
@@ -25,39 +26,32 @@ export default function TrekWhatsAppCTA({ trekTitle, trekDuration }: Props) {
   const whatsappUrl = getTrekWhatsAppUrl(trekTitle, trekDuration);
 
   return (
-    <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-sm text-center">
-      {/* WhatsApp Icon */}
-      <Image
-        src="/images/whatsapp.png"
-        alt="WhatsApp"
-        width={48}
-        height={48}
-        className="w-12 h-12 mx-auto mb-5 object-contain"
-      />
-
-      {/* Headline */}
-      <h3 className="font-sans font-bold text-xl md:text-2xl text-[#1a1a1a] mb-3">
-        Réservez ce trek sur WhatsApp
-      </h3>
-
-      {/* Description */}
-      <p className="font-sans text-sm text-gray-600 leading-relaxed mb-6">
-        Envoyez-nous un message direct avec vos dates. Mohamed vous répond en quelques minutes.
+    <div className="border-t border-[#E4DDD4] pt-7">
+      <div className="mb-7 flex items-center gap-3">
+        <Image src="/Mohamed.webp" alt="Mohamed, votre guide" width={48} height={48} className="h-12 w-12 rounded-full object-cover" />
+        <div>
+          <p className="text-sm font-medium text-[#1C1917]">Mohamed</p>
+          <p className="mt-1 text-xs text-[#625C55]">Votre guide local certifié</p>
+        </div>
+      </div>
+      <h2 className="font-display text-3xl font-medium leading-tight tracking-tight text-[#1C1917]">
+        Votre trek commence ici.
+      </h2>
+      <p className="mb-6 mt-4 text-sm leading-6 text-[#625C55]">
+        Partagez vos dates et vos envies avec Mohamed pour préparer votre départ.
       </p>
-
-      {/* Button */}
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="site-button w-full bg-[#25D366] text-white"
+        className="site-button bg-[#1C1917] text-white"
       >
         Discuter sur WhatsApp
+        <ArrowUpRight aria-hidden="true" />
       </a>
 
-      {/* Footer text */}
-      <p className="font-sans text-xs text-gray-500 mt-4">
-        Réponse en moins de 2h • Français, Anglais, Arabe
+      <p className="mt-4 text-xs leading-5 text-[#625C55]">
+        Français, anglais, arabe
       </p>
     </div>
   );
