@@ -49,10 +49,6 @@ export default function TrekWhatsAppCTA({ trekTitle, trekDuration }: Props) {
         Discuter sur WhatsApp
         <ArrowUpRight aria-hidden="true" />
       </a>
-
-      <p className="mt-4 text-xs leading-5 text-[#625C55]">
-        Français, anglais, arabe
-      </p>
     </div>
   );
 }
