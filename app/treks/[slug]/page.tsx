@@ -123,7 +123,7 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
         </div>
 
         <aside aria-label="Préparer ce trek avec Mohamed" className="lg:sticky lg:top-28">
-          <TrekWhatsAppCTA trekTitle={trek.title} trekDuration={trek.duration} />
+          <TrekWhatsAppCTA />
         </aside>
       </div>
 
