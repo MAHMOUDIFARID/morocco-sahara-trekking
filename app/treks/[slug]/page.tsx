@@ -5,7 +5,6 @@ import Image from "next/image";
 import { ArrowLeft, ArrowDown, ArrowUpRight, Check, Minus } from "lucide-react";
 import { getAllTreks, getTrekBySlug } from "@/lib/mdx";
 import MDXContent from "@/components/MDXContent";
-import TrekGallery from "@/components/TrekGallery";
 import TrekWhatsAppCTA, { getTrekWhatsAppUrl } from "@/components/TrekWhatsAppCTA";
 import { getBlurData } from "@/lib/blurData";
 
@@ -126,8 +125,6 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
           <TrekWhatsAppCTA />
         </aside>
       </div>
-
-      {trek.images.length > 0 && <TrekGallery images={trek.images} title={trek.title} />}
 
       <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="site-button fixed bottom-6 left-6 z-50 bg-[#1C1917] text-white lg:hidden">
         Parlons de ce trek

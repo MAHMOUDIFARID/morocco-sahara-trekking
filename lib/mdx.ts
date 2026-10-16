@@ -34,7 +34,6 @@ export function getAllTreks(): Trek[] {
       description: frontmatter.description || "",
       difficulty: frontmatter.difficulty || "Moderate",
       duration: Number(frontmatter.duration) || 1,
-      price: Number(frontmatter.price) || 0,
       region: frontmatter.region || "Haut Atlas",
       category: frontmatter.category || "Trek & Randonnée",
       images: frontmatter.images || ["/treks/placeholder.webp"],

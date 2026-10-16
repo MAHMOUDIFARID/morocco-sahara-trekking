@@ -9,38 +9,10 @@ import AccessibleOption from "@/components/AccessibleOption";
 import WhyUs from "@/components/WhyUs";
 import TravelAlbum from "@/components/TravelAlbum";
 import { ArrowRight } from "lucide-react";
-
-const FEATURED_TREKS = [
-  {
-    title: "Les vallées d’Aït Bouguemez et d’Aït Bououli",
-    description:
-      "Marchez entre les vallées d’Aït Bouguemez et d’Aït Bououli, au cœur du Haut Atlas.",
-    duration: "7 Jours",
-    difficulty: "Modéré",
-    image: "/treks/trek-7-jours-vallees-ait-bouguemez-ait-bououli-1.webp",
-    slug: "trek-7-jours-vallees-ait-bouguemez-ait-bououli",
-  },
-  {
-    title: "Les villages de la vallée des Roses",
-    description:
-      "Villages berbères, gorges d’Agouti et paysages du Dadès, au départ de Ouarzazate.",
-    duration: "4 Jours",
-    difficulty: "Facile",
-    image: "/treks/trek-villages-berberes-vallee-des-roses-4-jours-1.webp",
-    slug: "trek-villages-berberes-vallee-des-roses-4-jours",
-  },
-  {
-    title: "Les villages berbères d’Aït Bouguemez",
-    description:
-      "Explorez la vallée d’Aït Bouguemez, les gorges d’Arous et les sentiers berbères.",
-    duration: "5 Jours",
-    difficulty: "Facile",
-    image: "/treks/trek-randonnee-village-berbere-ait-bougmaz-1.webp",
-    slug: "trek-randonnee-village-berbere-ait-bougmaz",
-  },
-];
+import { getFeaturedTreks } from "@/lib/mdx";
 
 export default function HomePage() {
+  const featuredTreks = getFeaturedTreks().slice(0, 3);
 
   return (
     <div className="flex flex-col gap-20">
@@ -83,8 +55,8 @@ export default function HomePage() {
 
         {/* 3 Cards Grid */}
         <div className="grid grid-cols-1 gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
-          {FEATURED_TREKS.slice(0, 3).map((trek) => (
-            <TrekCard key={trek.slug} {...trek} variant="editorial" />
+          {featuredTreks.map((trek) => (
+            <TrekCard key={trek.slug} trek={trek} variant="editorial" />
           ))}
         </div>
       </section>

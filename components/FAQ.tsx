@@ -13,12 +13,12 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Quelle est la meilleure saison pour trekker dans le Haut Atlas ?",
     answer:
-      "La période idéale s'étend d'avril à octobre selon les circuits (avril à juin et septembre-octobre pour les treks en altitude comme le Toubkal ou le M'Goun, l'été convient mieux au désert et aux vallées basses). Chaque fiche programme précise sa saison recommandée.",
+      "Dans le Haut Atlas, la période dépend de l’altitude et du circuit : généralement d’avril à octobre, et de mai à octobre pour le M’Goun. Le désert et le Saghro se découvrent plutôt d’octobre à avril. La saison et les conditions particulières sont précisées sur chaque fiche.",
   },
   {
     question: "Quel niveau physique faut-il pour ces treks ?",
     answer:
-      "Nos 17 programmes couvrent tous les niveaux, de la randonnée familiale facile (3 jours en Vallée) à l'ascension technique du M'Goun ou du Toubkal (difficile). Le niveau de difficulté est indiqué sur chaque fiche : contactez-nous sur WhatsApp pour un conseil personnalisé selon votre forme physique.",
+      "Nos 17 programmes vont de la découverte familiale des vallées aux ascensions plus exigeantes du M’Goun et du Toubkal. Chaque fiche indique le niveau, les étapes et les temps de marche disponibles. Mohamed peut vous conseiller sur WhatsApp selon votre expérience et votre condition physique.",
   },
   {
     question: "Qu'est-ce qui est inclus dans le prix ?",
@@ -33,7 +33,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Les treks sont-ils adaptés aux groupes et familles ?",
     answer:
-      "Oui, la plupart de nos circuits s'adaptent en groupe, en famille ou en solo, avec un tarif dégressif selon le nombre de participants (visible sur chaque fiche programme). Le rythme et l'itinéraire peuvent aussi être ajustés sur demande.",
+      "Oui, les circuits peuvent être adaptés aux groupes, aux familles ou aux voyageurs en solo. Échangez avec Mohamed pour choisir un itinéraire et un rythme adaptés aux participants.",
   },
 ];
 

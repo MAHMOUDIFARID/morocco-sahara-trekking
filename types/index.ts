@@ -11,7 +11,6 @@ export interface TrekFrontmatter {
   description: string;
   difficulty: DifficultyLevel;
   duration: number; // in days
-  price: number; // in EUR
   region: string;
   category: string;
   images: string[];

@@ -67,7 +67,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-[60] transition-all duration-300 ${
         isHome ? "-mb-[60px] lg:-mb-[80px]" : ""
       } ${
         isTransparent
