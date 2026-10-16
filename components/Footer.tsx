@@ -35,9 +35,9 @@ function pickUniqueTreks(allTreks: Trek[], count = 7): Trek[] {
   for (const trek of allTreks) {
     if (picked.length >= count) break;
 
-    const titleLower = trek.title.toLowerCase();
+    const slugLower = trek.slug.toLowerCase();
     const matchedGroup = THEME_GROUPS.find((group) =>
-      group.keywords.some((kw) => titleLower.includes(kw))
+      group.keywords.some((kw) => slugLower.includes(kw))
     );
 
     const themeKey = matchedGroup ? matchedGroup.theme : trek.slug;

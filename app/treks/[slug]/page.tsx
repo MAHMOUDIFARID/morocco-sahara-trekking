@@ -54,7 +54,7 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
       <section aria-labelledby="trek-title" className="mt-9 grid items-center gap-9 lg:mt-12 lg:grid-cols-2 lg:gap-14 xl:gap-20">
         <div className="min-w-0">
           <p className="mb-5 text-sm text-[#625C55]">{trek.category}</p>
-          <h1 id="trek-title" className="font-display text-4xl font-medium leading-[1.08] tracking-tight text-[#1C1917] sm:text-5xl lg:text-[2.75rem] xl:text-5xl">
+          <h1 id="trek-title" className="text-balance font-display text-4xl font-medium leading-[1.08] tracking-tight text-[#1C1917] sm:text-5xl lg:text-[2.75rem] xl:text-5xl">
             {trek.title}
           </h1>
           <p className="mt-6 max-w-xl text-base leading-7 text-[#625C55]">{trek.description}</p>

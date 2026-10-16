@@ -12,7 +12,7 @@ import { ArrowRight } from "lucide-react";
 
 const FEATURED_TREKS = [
   {
-    title: "Les vallées d’Aït Bouguemez",
+    title: "Les vallées d’Aït Bouguemez et d’Aït Bououli",
     description:
       "Marchez entre les vallées d’Aït Bouguemez et d’Aït Bououli, au cœur du Haut Atlas.",
     duration: "7 Jours",
@@ -21,7 +21,7 @@ const FEATURED_TREKS = [
     slug: "trek-7-jours-vallees-ait-bouguemez-ait-bououli",
   },
   {
-    title: "La vallée des Roses",
+    title: "Les villages de la vallée des Roses",
     description:
       "Villages berbères, gorges d’Agouti et paysages du Dadès, au départ de Ouarzazate.",
     duration: "4 Jours",
@@ -30,7 +30,7 @@ const FEATURED_TREKS = [
     slug: "trek-villages-berberes-vallee-des-roses-4-jours",
   },
   {
-    title: "Les villages d’Aït Bougmaz",
+    title: "Les villages berbères d’Aït Bouguemez",
     description:
       "Explorez la vallée d’Aït Bouguemez, les gorges d’Arous et les sentiers berbères.",
     duration: "5 Jours",
