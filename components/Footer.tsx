@@ -7,7 +7,6 @@ import ScrollToTop from "@/components/ScrollToTop";
 const navigationLinks = [
   { label: "Accueil", href: "/" },
   { label: "Tous les Trekks", href: "/treks" },
-  { label: "Régions", href: "/regions" },
   { label: "Guide", href: "/guide" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },

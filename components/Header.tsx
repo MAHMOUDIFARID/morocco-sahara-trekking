@@ -8,7 +8,6 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const navigationLinks = [
   { href: "/treks", label: "Tous les Treks" },
-  { href: "/regions", label: "Régions" },
   { href: "/guide", label: "Guide" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
