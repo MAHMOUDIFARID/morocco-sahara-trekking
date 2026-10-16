@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 import { Menu, X, ArrowUpRight } from "lucide-react";
@@ -17,6 +17,7 @@ const navigationLinks = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const menuRef = useRef<HTMLDialogElement>(null);
   const pathname = usePathname();
   const isHome = pathname === "/";
 
@@ -31,32 +32,30 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Prevent background scroll when mobile menu is open
+  // A modal dialog keeps keyboard focus inside the menu and makes the page inert.
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!isOpen) return;
+    const menu = menuRef.current;
+    if (!menu) return;
+    const previousOverflow = document.body.style.overflow;
+    menu.showModal();
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "";
+      menu.close();
+      document.body.style.overflow = previousOverflow;
     };
   }, [isOpen]);
 
-  // Close menu on Escape key press
+  // Restore scrolling when moving from a mobile viewport to desktop.
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsOpen(false);
-      }
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setIsOpen(false);
     };
-    if (isOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-    }
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [isOpen]);
+    closeOnDesktop();
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
 
   // Close menu on route change
   useEffect(() => {
@@ -138,18 +137,34 @@ export default function Header() {
             isTransparent ? "text-white" : "text-structure"
           }`}
           aria-label="Menu"
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
+          aria-haspopup="dialog"
         >
           <Menu size={24} />
         </button>
       </div>
 
       {/* Fullscreen Mobile Menu (100dvh) */}
-      <div
-        className={`fixed inset-0 z-[999] w-screen w-full h-screen h-[100dvh] bg-[#1a1a1a] flex flex-col justify-between overflow-y-auto transition-all duration-300 ease-out lg:hidden ${
-          isOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-4 pointer-events-none"
-        }`}
+      <dialog
+        ref={menuRef}
+        id="mobile-navigation"
+        aria-label="Navigation principale"
+        onClose={() => setIsOpen(false)}
+        onKeyDown={(event) => {
+          if (event.key !== "Tab") return;
+          const controls = event.currentTarget.querySelectorAll<HTMLElement>("a[href], button:not([disabled])");
+          const first = controls[0];
+          const last = controls[controls.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
+        }}
+        className="fixed inset-0 z-[999] m-0 h-[100dvh] max-h-none w-full max-w-none border-0 bg-[#1a1a1a] p-0 flex flex-col justify-between overflow-y-auto backdrop:bg-black/40 [&:not([open])]:hidden lg:hidden"
       >
         {/* Top bar: Logo + Close (×) button */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 shrink-0">
@@ -173,6 +188,7 @@ export default function Header() {
             onClick={() => setIsOpen(false)}
             className="site-icon-button bg-transparent text-white"
             aria-label="Fermer le menu"
+            autoFocus
           >
             <X size={24} />
           </button>
@@ -205,7 +221,7 @@ export default function Header() {
             <ArrowUpRight aria-hidden="true" />
           </a>
         </div>
-      </div>
+      </dialog>
     </header>
   );
 }

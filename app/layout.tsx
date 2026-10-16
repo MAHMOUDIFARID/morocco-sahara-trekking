@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TopBar from "@/components/TopBar";
+import { SITE_URL } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,7 +23,7 @@ const clashGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://moroccosahratrekking.com"),
+  metadataBase: new URL(SITE_URL),
   title: "MOROCCO SAHARA TREKKING — Trekks dans le Désert Marocain",
   description:
     "Découvrez des randonnées chamelières et des expéditions authentiques dans le Sahara marocain à Merzouga, Erg Chebbi, Erg Chegaga, Zagora et M'hamid. Guidé par des nomades Amazighs autochtones.",

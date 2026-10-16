@@ -1,14 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-const INQUIRY_TYPES = [
-  "Trek",
-  "Général",
-  "Sur-mesure",
-  "Famille",
-  "Autre",
-];
+import { INQUIRY_TYPES } from "@/lib/contact";
 
 export default function ContactPage() {
   const [firstName, setFirstName] = useState("");
@@ -19,6 +12,7 @@ export default function ContactPage() {
   const [inquiryType, setInquiryType] = useState("Trek");
   const [message, setMessage] = useState("");
   const [newsletter, setNewsletter] = useState(false);
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -38,6 +32,8 @@ export default function ContactPage() {
           country,
           inquiryType,
           message,
+          newsletter,
+          website,
         }),
       });
 
@@ -53,17 +49,18 @@ export default function ContactPage() {
       setPhone("");
       setEmail("");
       setMessage("");
-    } catch (err: any) {
+      setNewsletter(false);
+    } catch (err: unknown) {
       console.error("Contact form error:", err);
-      setErrorMessage(err.message || "Erreur lors de l'envoi du message.");
+      setErrorMessage(err instanceof Error ? err.message : "Erreur lors de l'envoi du message.");
       setStatus("error");
     }
   };
 
   return (
-    <section className="w-full min-h-[calc(100vh-60px)] lg:h-[calc(100vh-80px)] lg:min-h-[calc(100vh-80px)] grid grid-cols-1 lg:grid-cols-2 overflow-hidden bg-white">
+    <section className="w-full min-h-[calc(100dvh-60px)] lg:min-h-[calc(100dvh-80px)] grid grid-cols-1 lg:grid-cols-2 bg-white">
       {/* LEFT SIDE: Google Map Embed */}
-      <div className="relative h-full w-full min-h-[400px] lg:min-h-full">
+      <div className="relative w-full min-h-[400px]">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3397.4!2d-6.1343235!3d31.3844657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdbcb7ee6700dacd%3A0x3798a5762cea4efa!2sTrekking%20Vall%C3%A9e%20des%20Roses%20Tour%20Guide%20Mohamed!5e0!3m2!1sfr!2sma!4v1700000000000!5m2!1sfr!2sma"
           width="100%"
@@ -80,15 +77,19 @@ export default function ContactPage() {
       {/* RIGHT SIDE: Form Card */}
       <div className="bg-white p-8 sm:p-10 lg:p-12 flex flex-col justify-center h-full">
         <div className="max-w-xl mx-auto w-full">
-          <h2 className="font-sans font-bold text-xl md:text-2xl text-[#1a1a1a]">
+          <h1 className="font-sans font-bold text-xl md:text-2xl text-[#1a1a1a]">
             Dites-nous ce dont vous avez besoin
-          </h2>
+          </h1>
           <p className="font-sans text-xs sm:text-sm text-gray-500 mt-1.5 mb-6 leading-relaxed">
             Notre équipe est prête à vous accompagner pour chaque détail, petit ou
             grand.
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-3.5">
+            <div className="hidden" aria-hidden="true">
+              <label htmlFor="contact-website">Site web</label>
+              <input id="contact-website" name="website" autoComplete="off" tabIndex={-1} value={website} onChange={(e) => setWebsite(e.target.value)} />
+            </div>
             {/* Row 1: Prénom & Nom */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <div>
@@ -96,6 +97,9 @@ export default function ContactPage() {
                   type="text"
                   required
                   placeholder="Prénom"
+                  aria-label="Prénom"
+                  autoComplete="given-name"
+                  maxLength={80}
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   className="w-full rounded-full border border-gray-200 px-5 py-2.5 text-sm text-[#1a1a1a] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C0462F] focus:border-transparent transition bg-white"
@@ -106,6 +110,9 @@ export default function ContactPage() {
                   type="text"
                   required
                   placeholder="Nom"
+                  aria-label="Nom"
+                  autoComplete="family-name"
+                  maxLength={80}
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   className="w-full rounded-full border border-gray-200 px-5 py-2.5 text-sm text-[#1a1a1a] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C0462F] focus:border-transparent transition bg-white"
@@ -119,6 +126,9 @@ export default function ContactPage() {
                 <input
                   type="text"
                   placeholder="Pays"
+                  aria-label="Pays"
+                  autoComplete="country-name"
+                  maxLength={100}
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
                   className="w-full rounded-full border border-gray-200 px-5 py-2.5 text-sm text-[#1a1a1a] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C0462F] focus:border-transparent transition bg-white"
@@ -128,6 +138,9 @@ export default function ContactPage() {
                 <input
                   type="tel"
                   placeholder="Téléphone"
+                  aria-label="Téléphone"
+                  autoComplete="tel"
+                  maxLength={40}
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="w-full rounded-full border border-gray-200 px-5 py-2.5 text-sm text-[#1a1a1a] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C0462F] focus:border-transparent transition bg-white"
@@ -141,6 +154,9 @@ export default function ContactPage() {
                 type="email"
                 required
                 placeholder="Adresse email"
+                aria-label="Adresse email"
+                autoComplete="email"
+                maxLength={254}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-full border border-gray-200 px-5 py-2.5 text-sm text-[#1a1a1a] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C0462F] focus:border-transparent transition bg-white"
@@ -159,6 +175,7 @@ export default function ContactPage() {
                     <button
                       key={type}
                       type="button"
+                      aria-pressed={isSelected}
                       onClick={() => setInquiryType(type)}
                       className={`site-button cursor-pointer select-none border ${
                         isSelected
@@ -179,6 +196,8 @@ export default function ContactPage() {
                 rows={4}
                 required
                 placeholder="Message"
+                aria-label="Message"
+                maxLength={5000}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="w-full rounded-2xl border border-gray-200 px-5 py-3 text-sm text-[#1a1a1a] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#C0462F] focus:border-transparent resize-none transition bg-white"
@@ -187,13 +206,14 @@ export default function ContactPage() {
 
             {/* Row 6: Newsletter iOS Toggle Switch */}
             <div className="flex items-center justify-between gap-4 py-1">
-              <span className="text-xs sm:text-sm text-gray-600 transition-colors select-none">
+              <span id="newsletter-label" className="text-xs sm:text-sm text-gray-600 transition-colors select-none">
                 Je souhaite recevoir des offres exclusives et des mises à jour.
               </span>
 
               <button
                 type="button"
                 role="switch"
+                aria-labelledby="newsletter-label"
                 aria-checked={newsletter}
                 onClick={() => setNewsletter(!newsletter)}
                 className={`relative flex-shrink-0 w-12 h-7 rounded-full transition-colors duration-300 ease-in-out border-0 outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-[#C0462F] focus-visible:ring-offset-2 cursor-pointer ${
@@ -210,7 +230,7 @@ export default function ContactPage() {
 
             {/* Status Messages */}
             {status === "success" && (
-              <div className="p-4 rounded-2xl bg-green-50 border border-green-200 text-green-800 text-sm">
+              <div role="status" className="p-4 rounded-2xl bg-green-50 border border-green-200 text-green-800 text-sm">
                 <p className="font-semibold">Message envoyé avec succès !</p>
                 <p className="mt-1 text-xs text-green-700">
                   Merci pour votre message. Nous vous répondrons dans les plus brefs délais (généralement sous 2h).
@@ -219,7 +239,7 @@ export default function ContactPage() {
             )}
 
             {status === "error" && (
-              <div className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-800 text-sm">
+              <div role="alert" className="p-4 rounded-2xl bg-red-50 border border-red-200 text-red-800 text-sm">
                 <p className="font-semibold">{errorMessage || "Erreur lors de l'envoi."}</p>
                 <p className="mt-1 text-xs text-red-700">
                   Veuillez réessayer ou nous contacter directement via WhatsApp au +212 672 058 267.

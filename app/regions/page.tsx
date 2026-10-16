@@ -1,35 +1,13 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { TREK_REGIONS } from "@/lib/trekRegions";
 
 export const metadata: Metadata = {
   title: "Régions de Randonnée | Morocco Sahara Trekking",
   description:
     "Découvrez les régions du Maroc explorées lors de nos treks : Haut Atlas central, Vallée des Roses, Massif du Siroua, Djebel Saghro et les dunes du Sahara.",
 };
-
-const REGIONS = [
-  {
-    name: "Haut Atlas Central",
-    subtitle: "Aït Bouguemez & Massif du M'Goun",
-    description: "Sommets majestueux, gorges spectaculaires et la célèbre Vallée Heureuse.",
-  },
-  {
-    name: "Vallée des Roses & Dadès",
-    subtitle: "Kelaat M'Gouna & Gorges",
-    description: "Canyons ocre, vergers fleuris, kasbahs centenaires et villages berbères typiques.",
-  },
-  {
-    name: "Sahara & Désert",
-    subtitle: "Erg Chegaga & Merzouga",
-    description: "Immenses dunes dorées, nuits sous les étoiles et immersion caravanière.",
-  },
-  {
-    name: "Anti-Atlas & Saghro",
-    subtitle: "Djebel Siroua & Djebel Saghro",
-    description: "Terre volcanique, pitons rocheux et paysages lunaires d'une beauté sauvage.",
-  },
-];
 
 export default function RegionsPage() {
   return (
@@ -49,7 +27,7 @@ export default function RegionsPage() {
 
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-        {REGIONS.map((region) => (
+        {TREK_REGIONS.map((region) => (
           <div
             key={region.name}
             className="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
@@ -63,7 +41,7 @@ export default function RegionsPage() {
             </div>
             <div className="mt-6 pt-4 border-t border-gray-100">
               <Link
-                href="/treks"
+                href={`/treks?region=${region.slug}`}
                 className="site-button border border-[#1a1a1a]/20 text-[#1a1a1a]"
               >
                 <span>Voir les treks associés</span>

@@ -7,12 +7,6 @@ interface Testimonial {
 const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "Un trek inoubliable dans la Vallée Aït Bougmez. Paysages sublimes et moments de pur bonheur, boucler ce trek grâce à Youssef a été extraordinaire. Merci pour cette expérience unique !",
-    author: "Lea",
-    role: "Trek Aït Bougmez",
-  },
-  {
-    quote:
       "Une aventure incroyable à travers les montagnes du Maroc. Des paysages époustouflants et des guides exceptionnels.",
     author: "Sarah",
     role: "Trek Haut Atlas",
@@ -40,12 +34,6 @@ const TESTIMONIALS: Testimonial[] = [
       "Trois jours magiques dans le désert. Les nuits sous les étoiles resteront gravées dans ma mémoire.",
     author: "Emma",
     role: "Trek Merzouga",
-  },
-  {
-    quote:
-      "Youssef est un guide exceptionnel, à l'écoute et passionné. Une expérience humaine avant tout.",
-    author: "Lucas",
-    role: "Trek Aït Bouguemez",
   },
   {
     quote:

@@ -1,8 +1,11 @@
 import { Metadata } from "next";
 import TrekCard from "@/components/TrekCard";
 import { getAllTreks } from "@/lib/mdx";
+import Link from "next/link";
+import { TREK_REGIONS } from "@/lib/trekRegions";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/treks" },
   title: "Nos Trekks dans le Haut Atlas et le Sud marocain | Morocco Sahara Trekking",
   description:
     "17 programmes de 3 à 10 jours dans le Haut Atlas, la Vallée des Roses et le Sahara marocain, guidés par Mohamed et son équipe.",
@@ -14,8 +17,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TreksPage() {
-  const treks = getAllTreks();
+export default function TreksPage({ searchParams }: { searchParams: { region?: string | string[] } }) {
+  const allTreks = getAllTreks();
+  const selectedRegion = TREK_REGIONS.find((region) => region.slug === searchParams.region);
+  const treks = selectedRegion
+    ? allTreks.filter((trek) => selectedRegion.regions.includes(trek.region))
+    : allTreks;
 
   return (
     <section
@@ -28,12 +35,30 @@ export default function TreksPage() {
           id="treks-title"
           className="font-display text-4xl font-medium leading-tight tracking-tight text-[#1C1917] md:text-5xl"
         >
-          Trouvez votre prochain trek.
+          {selectedRegion ? selectedRegion.name : "Trouvez votre prochain trek."}
         </h1>
         <p className="mt-4 max-w-xl font-sans text-base leading-relaxed text-[#625C55]">
-          17 programmes de 3 à 10 jours, guidés par Mohamed et son équipe.
+          {selectedRegion
+            ? `${treks.length} programme${treks.length > 1 ? "s" : ""} dans cette région, guidé${treks.length > 1 ? "s" : ""} par Mohamed et son équipe.`
+            : `${allTreks.length} programmes de 3 à 10 jours, guidés par Mohamed et son équipe.`}
         </p>
       </div>
+
+      <nav aria-label="Filtrer les treks par région" className="mb-10 flex flex-wrap gap-2">
+        {[{ slug: "", name: "Tous les treks" }, ...TREK_REGIONS].map((region) => {
+          const active = region.slug === (selectedRegion?.slug || "");
+          return (
+            <Link
+              key={region.slug}
+              href={region.slug ? `/treks?region=${region.slug}` : "/treks"}
+              aria-current={active ? "page" : undefined}
+              className={`site-button border ${active ? "border-[#1C1917] bg-[#1C1917] text-white" : "border-[#1C1917]/20 text-[#1C1917]"}`}
+            >
+              {region.name}
+            </Link>
+          );
+        })}
+      </nav>
 
       {/* 17 Treks Grid */}
       <div className="grid grid-cols-1 gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
