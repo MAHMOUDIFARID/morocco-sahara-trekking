@@ -22,18 +22,22 @@ const clashGrotesk = localFont({
   variable: "--font-clash-grotesk",
 });
 
+const siteTitle = "Trek et randonnée au Maroc | Atlas & Sahara";
+const siteDescription =
+  "Treks et randonnées au Maroc, des sommets de l’Atlas aux vallées berbères et aux dunes du Sahara. Des itinéraires guidés et personnalisables avec Mohamed et son équipe.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "MOROCCO SAHARA TREKKING — Trekks dans le Désert Marocain",
-  description:
-    "Découvrez des randonnées chamelières et des expéditions authentiques dans le Sahara marocain à Merzouga, Erg Chebbi, Erg Chegaga, Zagora et M'hamid. Guidé par des nomades Amazighs autochtones.",
+  title: siteTitle,
+  description: siteDescription,
   keywords: [
-    "trek désert maroc",
-    "randonnée chamelière sahara",
-    "dunes merzouga",
-    "expédition erg chegaga",
-    "circuit désert zagora",
-    "trek nomade m'hamid",
+    "trek maroc",
+    "randonnée haut atlas",
+    "trek toubkal",
+    "ascension m'goun",
+    "vallée des roses",
+    "aït bouguemez",
+    "trek sahara",
     "guide trekking maroc",
   ],
   authors: [{ name: "MOROCCO SAHARA TREKKING" }],
@@ -43,9 +47,8 @@ export const metadata: Metadata = {
     apple: "/logo.png",
   },
   openGraph: {
-    title: "MOROCCO SAHARA TREKKING | Expéditions & Randonnées Chamelières dans le Désert",
-    description:
-      "Trekking authentique dans le désert à Merzouga, Erg Chebbi, Erg Chegaga, Zagora et M'hamid.",
+    title: siteTitle,
+    description: siteDescription,
     type: "website",
     locale: "fr_FR",
     siteName: "MOROCCO SAHARA TREKKING",
