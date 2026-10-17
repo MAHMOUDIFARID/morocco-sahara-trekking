@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Star } from "lucide-react";
 import { getAllTreks } from "@/lib/mdx";
 import { Trek } from "@/types";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -88,6 +89,30 @@ export default function Footer() {
             <p className="text-sm text-gray-500 font-normal">
               © 2026 MOROCCO SAHARA TREKKING
             </p>
+            <a
+              href="https://www.tripadvisor.fr/Attraction_Review-g293732-d9991570-Reviews-Trips_Morocco_Travels-Casablanca_Casablanca_Settat.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Tripadvisor : 5 sur 5 — ouvrir notre page dans un nouvel onglet"
+              title="Tripadvisor"
+              className="mt-4 inline-flex w-fit max-w-full items-center gap-2 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            >
+              <Image
+                src="/icons/tripadvisor.png"
+                alt=""
+                width={48}
+                height={48}
+                className="h-12 w-12 shrink-0 object-contain"
+              />
+              <span className="flex items-center gap-1.5" aria-hidden="true">
+                <span className="text-sm font-medium tabular-nums text-white">5,0</span>
+                <span className="flex items-center gap-0.5 text-[#008A38]">
+                  {Array.from({ length: 5 }, (_, index) => (
+                    <Star key={index} className="h-3 w-3 xl:h-3.5 xl:w-3.5" fill="currentColor" strokeWidth={0} />
+                  ))}
+                </span>
+              </span>
+            </a>
           </div>
 
           {/* Column 2: Navigation Links */}
