@@ -9,16 +9,19 @@ import TrekWhatsAppCTA, { getTrekWhatsAppUrl } from "@/components/TrekWhatsAppCT
 import { getBlurData } from "@/lib/blurData";
 import { getDurationLabel } from "@/lib/trekPresentation";
 
+export const dynamicParams = false;
+
 interface TrekPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return getAllTreks().map((trek) => ({ slug: trek.slug }));
 }
 
-export function generateMetadata({ params }: TrekPageProps): Metadata {
-  const trek = getTrekBySlug(params.slug);
+export async function generateMetadata({ params }: TrekPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const trek = getTrekBySlug(slug);
   if (!trek) return { title: "Trekk non trouvé | MOROCCO SAHARA TREKKING" };
 
   return {
@@ -32,8 +35,9 @@ export function generateMetadata({ params }: TrekPageProps): Metadata {
   };
 }
 
-export default function TrekDetailPage({ params }: TrekPageProps) {
-  const trek = getTrekBySlug(params.slug);
+export default async function TrekDetailPage({ params }: TrekPageProps) {
+  const { slug } = await params;
+  const trek = getTrekBySlug(slug);
   if (!trek) notFound();
 
   const isVehicle = trek.activityType === "vehicle";

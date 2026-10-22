@@ -17,9 +17,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TreksPage({ searchParams }: { searchParams: { region?: string | string[] } }) {
+export default async function TreksPage({ searchParams }: { searchParams: Promise<{ region?: string | string[] }> }) {
+  const { region: requestedRegion } = await searchParams;
   const allTreks = getAllTreks();
-  const selectedRegion = TREK_REGIONS.find((region) => region.slug === searchParams.region);
+  const selectedRegion = TREK_REGIONS.find((region) => region.slug === requestedRegion);
   const treks = selectedRegion
     ? allTreks.filter((trek) => selectedRegion.regions.includes(trek.region))
     : allTreks;

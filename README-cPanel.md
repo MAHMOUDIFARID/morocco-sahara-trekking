@@ -81,7 +81,11 @@ Dans l'interface Node.js App de cPanel, cliquez sur le bouton **Restart**.
 
 Le serveur SMTP doit présenter un certificat TLS valide pour `SMTP_HOST`. La vérification du certificat est activée ; corrigez le certificat ou utilisez le nom d'hôte sécurisé fourni par l'hébergeur en cas d'échec.
 
-La protection anti-spam limite les messages à 3 par adresse email et 30 au total par fenêtre de 15 minutes, dans chaque processus Node. Le champ anti-robot et la validation des données sont également actifs. Pour plusieurs processus ou instances, appliquez aussi une limite partagée dans le proxy de l'hébergeur. Si le proxy remplace systématiquement un en-tête d'IP, configurez `CONTACT_TRUSTED_IP_HEADER` avec son nom pour activer une limite supplémentaire de 5 messages par IP et par fenêtre. Ne configurez pas un en-tête contrôlé par le visiteur.
+La protection anti-spam ne partage aucun quota entre tous les visiteurs. Par fenêtre de 15 minutes, elle limite chaque IP fiable à 30 requêtes JSON et 5 messages valides, ainsi que chaque couple IP/email à 3 messages. Une IP bloquée ne consomme pas le quota des autres IP. Les visiteurs partageant la même IP publique partagent toutefois ses limites.
+
+Sur Vercel (`VERCEL=1`), l'application utilise automatiquement `x-vercel-forwarded-for`, fourni par la plateforme. Sur cPanel, configurez `CONTACT_TRUSTED_IP_HEADER` uniquement si le proxy remplace systématiquement cet en-tête. Ne faites jamais confiance à un en-tête contrôlé par le visiteur. Sans IP fiable, seule la limite de 3 messages par email s'applique ; il n'existe aucun quota anonyme commun. Le champ anti-robot et la validation des données restent actifs.
+
+Ces compteurs sont locaux à chaque processus Node et leur mémoire est bornée (10 000 identités par compteur, avec éviction des anciennes entrées). Ils ne constituent pas une protection distribuée : pour plusieurs instances ou contre des attaques réparties, configurez une limite partagée **par IP** dans le firewall/proxy de l'hébergeur ou un stockage partagé. Un redémarrage ou une éviction réinitialise le compteur concerné. N'ajoutez pas de quota applicatif global qui permettrait à un visiteur de bloquer le formulaire pour tous.
 
 Le choix « offres exclusives et mises à jour » est envoyé dans l'email de l'équipe, avec la date de l'accord. Il permet de gérer la liste manuellement ; aucun service d'envoi de newsletters n'est connecté automatiquement.
 

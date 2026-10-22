@@ -68,7 +68,7 @@ export async function readContactBody(request: Request): Promise<unknown> {
 
 // Limits apply within each Node process. Hosts with multiple replicas should also
 // enforce a shared limit at their reverse proxy. IP headers must be overwritten by that proxy.
-export function createContactLimiter() {
+export function createContactLimiter(maxBuckets = 10_000) {
   const buckets = new Map<string, { count: number; resetAt: number }>();
   const windowMs = 15 * 60 * 1000;
   return (limits: { key: string; max: number }[], now = Date.now()): number => {
@@ -80,6 +80,12 @@ export function createContactLimiter() {
     limits.forEach(({ key }) => {
       const bucket = buckets.get(key) || { count: 0, resetAt: now + windowMs };
       bucket.count += 1;
+      // Bound process memory without introducing a global rejection quota.
+      buckets.delete(key);
+      if (buckets.size >= maxBuckets) {
+        const oldest = buckets.keys().next().value;
+        if (oldest !== undefined) buckets.delete(oldest);
+      }
       buckets.set(key, bucket);
     });
     return 0;

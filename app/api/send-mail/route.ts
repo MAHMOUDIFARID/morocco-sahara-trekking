@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createHash } from "crypto";
+import { isIP } from "node:net";
 import nodemailer from "nodemailer";
 import { createContactLimiter, escapeHtml, readContactBody, validateContact } from "@/lib/contact";
 import { SITE_URL } from "@/lib/site";
@@ -37,9 +38,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Format de demande non valide." }, { status: 415 });
   }
 
-  // The global cap cannot be bypassed by rotating addresses or spoofing IP headers.
-  const requestRetry = limitRequests([{ key: "requests", max: 300 }]);
-  if (requestRetry) return tooManyRequests(requestRetry);
+  // Trust only a hosting-provided IP, never arbitrary forwarding headers.
+  const ipHeader = process.env.VERCEL === "1"
+    ? "x-vercel-forwarded-for"
+    : process.env.CONTACT_TRUSTED_IP_HEADER;
+  const rawIp = ipHeader ? request.headers.get(ipHeader)?.split(",")[0].trim() : null;
+  const ip = rawIp && isIP(rawIp) ? fingerprint(rawIp.toLowerCase()) : null;
+  // No shared anonymous bucket: one sender must not exhaust everyone else's quota.
+  if (ip) {
+    const requestRetry = limitRequests([{ key: `requests:${ip}`, max: 30 }]);
+    if (requestRetry) return tooManyRequests(requestRetry);
+  }
 
   let body: unknown;
   try {
@@ -61,13 +70,10 @@ export async function POST(request: Request) {
   }
 
   const limits = [
-    { key: "messages", max: 30 },
-    { key: `email:${fingerprint(contact.email)}`, max: 3 },
+    // Scope unverified emails to the IP so other visitors cannot consume their quota.
+    { key: `email:${ip || "no-ip"}:${fingerprint(contact.email)}`, max: 3 },
   ];
-  // Configure only a header that the hosting reverse proxy reliably overwrites.
-  const ipHeader = process.env.CONTACT_TRUSTED_IP_HEADER;
-  const ip = ipHeader ? request.headers.get(ipHeader)?.split(",")[0].trim() : null;
-  if (ip) limits.push({ key: `ip:${fingerprint(ip)}`, max: 5 });
+  if (ip) limits.push({ key: `ip:${ip}`, max: 5 });
   const messageRetry = limitMessages(limits);
   if (messageRetry) return tooManyRequests(messageRetry);
 

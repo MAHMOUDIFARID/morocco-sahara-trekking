@@ -105,11 +105,62 @@ test('rate limits repeat senders and returns Retry-After', async () => {
   assert.equal(api.messages.length, 6);
 });
 
-test('global send limit applies even if email and IP headers keep changing', async () => {
+test('independent senders do not share a global message quota', async () => {
   const api = loadContact();
-  for (let i = 0; i < 30; i++) assert.equal((await api.POST(request({ ...valid, email: `visitor${i}@example.test` }, { 'x-forwarded-for': `192.0.2.${i}` }))).status, 200);
-  assert.equal((await api.POST(request({ ...valid, email: 'another@example.test' }))).status, 429);
-  assert.equal(api.messages.length, 60);
+  for (let i = 0; i < 40; i++) assert.equal((await api.POST(request({ ...valid, email: `visitor${i}@example.test` }))).status, 200);
+  assert.equal(api.messages.length, 80);
+});
+
+test('300 invalid anonymous requests cannot lock out a legitimate sender', async () => {
+  const api = loadContact();
+  for (let i = 0; i < 300; i++) assert.equal((await api.POST(request({}))).status, 400);
+  assert.equal((await api.POST(request())).status, 200);
+  assert.equal(api.messages.length, 2);
+});
+
+test('invalid-request flooding only blocks its trusted IP', async () => {
+  const api = loadContact({ env: { VERCEL: '1' } });
+  const attacker = { 'x-vercel-forwarded-for': '192.0.2.1' };
+  for (let i = 0; i < 300; i++) {
+    assert.equal((await api.POST(request({}, attacker))).status, i < 30 ? 400 : 429);
+  }
+  assert.equal((await api.POST(request(valid, attacker))).status, 429);
+  assert.equal((await api.POST(request(valid, { 'x-vercel-forwarded-for': '192.0.2.2' }))).status, 200);
+  assert.equal(api.messages.length, 2);
+});
+
+test('Vercel send limits ignore spoofed forwarding headers and isolate senders', async () => {
+  const api = loadContact({ env: { VERCEL: '1' } });
+  for (let i = 0; i < 5; i++) {
+    assert.equal((await api.POST(request({ ...valid, email: `visitor${i}@example.test` }, {
+      'x-vercel-forwarded-for': '192.0.2.1', 'x-forwarded-for': `192.0.2.${i + 10}`,
+    }))).status, 200);
+  }
+  assert.equal((await api.POST(request(valid, { 'x-vercel-forwarded-for': '192.0.2.1' }))).status, 429);
+  assert.equal((await api.POST(request(valid, { 'x-vercel-forwarded-for': '192.0.2.2' }))).status, 200);
+});
+
+test('a sender cannot lock another IP out by submitting that visitors email', async () => {
+  const api = loadContact({ env: { VERCEL: '1' } });
+  for (let i = 0; i < 3; i++) assert.equal((await api.POST(request(valid, { 'x-vercel-forwarded-for': '192.0.2.1' }))).status, 200);
+  assert.equal((await api.POST(request(valid, { 'x-vercel-forwarded-for': '192.0.2.1' }))).status, 429);
+  assert.equal((await api.POST(request(valid, { 'x-vercel-forwarded-for': '192.0.2.2' }))).status, 200);
+});
+
+test('untrusted or invalid IP headers never create a shared anonymous quota', async () => {
+  const api = loadContact();
+  for (let i = 0; i < 40; i++) assert.equal((await api.POST(request({ ...valid, email: `visitor${i}@example.test` }, { 'x-forwarded-for': '192.0.2.1', 'x-vercel-forwarded-for': '192.0.2.1' }))).status, 200);
+  const hosted = loadContact({ env: { VERCEL: '1' } });
+  for (let i = 0; i < 40; i++) assert.equal((await hosted.POST(request({ ...valid, email: `visitor${i}@example.test` }, { 'x-vercel-forwarded-for': 'not-an-ip' }))).status, 200);
+});
+
+test('limiter bounds memory by evicting old identities instead of rejecting new visitors', () => {
+  const limiter = loadContact().helpers.createContactLimiter(2);
+  assert.equal(limiter([{ key: 'a', max: 1 }], 0), 0);
+  assert.equal(limiter([{ key: 'b', max: 1 }], 0), 0);
+  assert.equal(limiter([{ key: 'c', max: 1 }], 0), 0);
+  assert.ok(limiter([{ key: 'b', max: 1 }], 0) > 0);
+  assert.equal(limiter([{ key: 'a', max: 1 }], 0), 0);
 });
 
 test('configured trusted proxy IP also limits rotating email addresses', async () => {
