@@ -1,22 +1,8 @@
 import Image from "next/image";
 
-export function getTrekWhatsAppUrl(trekTitle: string, trekDuration: number) {
-  const phone = "212672058267"; // Mohamed's WhatsApp number
+export { getTrekWhatsAppUrl } from "@/lib/trekPresentation";
 
-  const message = `Bonjour Mohamed,
-
-Je suis intéressé(e) par le trek suivant :
-${trekTitle}
-Durée : ${trekDuration} jours
-
-Pourriez-vous me donner plus d'informations (dates disponibles, niveau requis, ce qui est inclus) ?
-
-Merci d'avance !`;
-
-  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-}
-
-export default function TrekWhatsAppCTA() {
+export default function TrekWhatsAppCTA({ isVehicle = false }: { isVehicle?: boolean }) {
   return (
     <div className="border-t border-[#E4DDD4] pt-7">
       <div className="mb-7 flex items-center gap-3">
@@ -27,7 +13,7 @@ export default function TrekWhatsAppCTA() {
         </div>
       </div>
       <h2 className="font-display text-3xl font-medium leading-tight tracking-tight text-[#1C1917]">
-        Votre trek commence ici.
+        {isVehicle ? "Votre voyage commence ici." : "Votre trek commence ici."}
       </h2>
       <p className="mt-4 text-sm leading-6 text-[#625C55]">
         Partagez vos dates et vos envies avec Mohamed pour préparer votre départ.

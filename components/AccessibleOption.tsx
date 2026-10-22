@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function AccessibleOption() {
   const whatsappMessage = encodeURIComponent(
-    "Bonjour Mohamed, je suis intéressé(e) par une formule accessible sans longue marche. Pouvez-vous m'en dire plus ?"
+    "Bonjour Mohamed, je suis intéressé(e) par votre formule de découverte du Maroc en voiture, sans longue marche. Pouvez-vous me proposer un itinéraire adapté ?"
   );
   const whatsappUrl = `https://wa.me/212672058267?text=${whatsappMessage}`;
 
@@ -27,7 +27,7 @@ export default function AccessibleOption() {
 
         {/* Centered subheadline */}
         <p className="font-sans text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl mx-auto mb-8">
-          Découvrez les paysages du Maroc avec une formule confortable, adaptée à vos envies.
+          Découvrez les paysages du Maroc en voiture, avec des pauses et des visites adaptées à vos possibilités de marche.
         </p>
 
         {/* CTA */}

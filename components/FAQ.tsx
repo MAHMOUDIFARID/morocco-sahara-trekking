@@ -18,7 +18,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Quel niveau physique faut-il pour ces treks ?",
     answer:
-      "Nos 17 programmes vont de la découverte familiale des vallées aux ascensions plus exigeantes du M’Goun et du Toubkal. Chaque fiche indique le niveau, les étapes et les temps de marche disponibles. Mohamed peut vous conseiller sur WhatsApp selon votre expérience et votre condition physique.",
+      "Nos programmes vont de la découverte familiale des vallées aux ascensions plus exigeantes du M’Goun et du Toubkal. Une formule de découverte en voiture, sans longue marche, est aussi proposée. Mohamed peut vous conseiller sur WhatsApp selon votre expérience et vos possibilités de marche.",
   },
   {
     question: "Qu'est-ce qui est inclus dans le prix ?",

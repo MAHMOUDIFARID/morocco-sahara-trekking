@@ -7,6 +7,7 @@ import { getAllTreks, getTrekBySlug } from "@/lib/mdx";
 import MDXContent from "@/components/MDXContent";
 import TrekWhatsAppCTA, { getTrekWhatsAppUrl } from "@/components/TrekWhatsAppCTA";
 import { getBlurData } from "@/lib/blurData";
+import { getDurationLabel } from "@/lib/trekPresentation";
 
 interface TrekPageProps {
   params: { slug: string };
@@ -35,7 +36,8 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
   const trek = getTrekBySlug(params.slug);
   if (!trek) notFound();
 
-  const whatsappUrl = getTrekWhatsAppUrl(trek.title, trek.duration);
+  const isVehicle = trek.activityType === "vehicle";
+  const whatsappUrl = getTrekWhatsAppUrl(trek.title, trek.duration, trek.activityType);
   const difficultyLabels: Record<string, string> = {
     Easy: "Facile", Moderate: "Modéré", Hard: "Difficile",
   };
@@ -59,7 +61,7 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
           <p className="mt-6 max-w-xl text-base leading-7 text-[#625C55]">{trek.description}</p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-5">
             <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="site-button hidden bg-[#1C1917] text-white lg:inline-flex">
-              Parlons de ce trek
+              {isVehicle ? "Parlons de ce voyage" : "Parlons de ce trek"}
               <ArrowUpRight aria-hidden="true" />
             </a>
             <a href="#programme" className="inline-flex items-center gap-2 text-sm font-medium text-[#1C1917] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent">
@@ -76,15 +78,15 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
       <dl className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4 border-y border-[#E4DDD4] py-6 text-sm text-[#625C55] lg:mt-14">
         <div>
           <dt className="sr-only">Durée</dt>
-          <dd className="font-medium text-[#1C1917]">{trek.duration} {trek.duration > 1 ? "jours" : "jour"}</dd>
+          <dd className="font-medium text-[#1C1917]">{getDurationLabel(trek.duration)}</dd>
         </div>
         <div>
           <dt className="sr-only">Région</dt>
           <dd className="flex items-center gap-7"><span aria-hidden="true" className="text-[#B8ADA1]">·</span>{trek.region}</dd>
         </div>
         <div>
-          <dt className="sr-only">Difficulté</dt>
-          <dd className="flex items-center gap-7"><span aria-hidden="true" className="text-[#B8ADA1]">·</span>Niveau {(difficultyLabels[trek.difficulty] || trek.difficulty).toLowerCase()}</dd>
+          <dt className="sr-only">{isVehicle ? "Formule" : "Difficulté"}</dt>
+          <dd className="flex items-center gap-7"><span aria-hidden="true" className="text-[#B8ADA1]">·</span>{isVehicle ? "En voiture, sans longue marche" : `Niveau ${(difficultyLabels[trek.difficulty] || trek.difficulty).toLowerCase()}`}</dd>
         </div>
       </dl>
 
@@ -121,13 +123,13 @@ export default function TrekDetailPage({ params }: TrekPageProps) {
           </section>
         </div>
 
-        <aside aria-label="Préparer ce trek avec Mohamed" className="lg:sticky lg:top-28">
-          <TrekWhatsAppCTA />
+        <aside aria-label={`Préparer ce ${isVehicle ? "voyage" : "trek"} avec Mohamed`} className="lg:sticky lg:top-28">
+          <TrekWhatsAppCTA isVehicle={isVehicle} />
         </aside>
       </div>
 
       <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="site-button fixed bottom-6 left-6 z-50 bg-[#1C1917] text-white lg:hidden">
-        Parlons de ce trek
+        {isVehicle ? "Parlons de ce voyage" : "Parlons de ce trek"}
         <ArrowUpRight aria-hidden="true" />
       </a>
     </article>

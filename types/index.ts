@@ -15,7 +15,8 @@ export interface TrekFrontmatter {
   slug: string;
   description: string;
   difficulty: DifficultyLevel;
-  duration: number; // in days
+  duration: number | string; // Days for fixed itineraries, or "Sur mesure".
+  activityType?: "trek" | "vehicle";
   region: string;
   category: string;
   images: string[];

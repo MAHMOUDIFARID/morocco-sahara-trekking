@@ -70,10 +70,10 @@ export default function AboutGuide() {
 
               <div className="flex flex-col gap-2">
                 <dt className="order-2 font-sans text-xs leading-5 text-[#625C55] sm:text-sm">
-                  programmes de trek
+                  programmes et voyages
                 </dt>
                 <dd className="order-1 font-display text-3xl font-medium leading-none tracking-tight text-[#1C1917] tabular-nums md:text-4xl">
-                  <CountUp end={17} />
+                  <CountUp end={18} />
                 </dd>
               </div>
 

@@ -33,7 +33,8 @@ export function getAllTreks(): Trek[] {
       slug: frontmatter.slug || fallbackSlug,
       description: frontmatter.description || "",
       difficulty: frontmatter.difficulty || "Moderate",
-      duration: Number(frontmatter.duration) || 1,
+      duration: Number(frontmatter.duration) || frontmatter.duration || 1,
+      activityType: frontmatter.activityType === "vehicle" ? "vehicle" : "trek",
       region: frontmatter.region || "Haut Atlas",
       category: frontmatter.category || "Trek & Randonnée",
       images: frontmatter.images || ["/treks/placeholder.webp"],
@@ -54,7 +55,7 @@ export function getAllTreks(): Trek[] {
     }
     if (a.featured && !b.featured) return -1;
     if (!a.featured && b.featured) return 1;
-    return a.duration - b.duration;
+    return (Number(a.duration) || Infinity) - (Number(b.duration) || Infinity);
   });
 }
 

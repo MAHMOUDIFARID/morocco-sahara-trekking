@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/treks" },
   title: "Nos Trekks dans le Haut Atlas et le Sud marocain | Morocco Sahara Trekking",
   description:
-    "17 programmes de 3 à 10 jours dans le Haut Atlas, la Vallée des Roses et le Sahara marocain, guidés par Mohamed et son équipe.",
+    "Treks de 3 à 10 jours et voyages en voiture sur mesure dans l’Atlas, les vallées et le Sahara marocain, avec Mohamed et son équipe.",
   openGraph: {
     title: "Nos Trekks dans le Haut Atlas et le Sud marocain",
     description:
-      "17 programmes de 3 à 10 jours dans le Haut Atlas, la Vallée des Roses et le Sahara marocain, guidés par Mohamed et son équipe.",
+      "Treks de 3 à 10 jours et voyages en voiture sur mesure dans l’Atlas, les vallées et le Sahara marocain, avec Mohamed et son équipe.",
     images: ["/logo.png"],
   },
 };
@@ -40,7 +40,7 @@ export default function TreksPage({ searchParams }: { searchParams: { region?: s
         <p className="mt-4 max-w-xl font-sans text-base leading-relaxed text-[#625C55]">
           {selectedRegion
             ? `${treks.length} programme${treks.length > 1 ? "s" : ""} dans cette région, guidé${treks.length > 1 ? "s" : ""} par Mohamed et son équipe.`
-            : `${allTreks.length} programmes de 3 à 10 jours, guidés par Mohamed et son équipe.`}
+            : `${allTreks.length} programmes à pied ou en voiture, avec Mohamed et son équipe. Treks de 3 à 10 jours et voyages sur mesure.`}
         </p>
       </div>
 
@@ -60,7 +60,7 @@ export default function TreksPage({ searchParams }: { searchParams: { region?: s
         })}
       </nav>
 
-      {/* 17 Treks Grid */}
+      {/* Programmes */}
       <div className="grid grid-cols-1 gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
         {treks.map((trek, index) => (
           <TrekCard key={trek.slug} {...trek} variant="editorial" priority={index < 3} />

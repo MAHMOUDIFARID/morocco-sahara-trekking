@@ -1,14 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Car } from "lucide-react";
 import { Trek } from "@/types";
 import { getBlurData } from "@/lib/blurData";
+import { getDurationLabel } from "@/lib/trekPresentation";
 
 export interface TrekCardProps {
   trek?: Trek;
   title?: string;
   description?: string;
   duration?: string | number;
+  activityType?: Trek["activityType"];
   difficulty?: "Facile" | "Modéré" | "Difficile" | "Easy" | "Moderate" | "Hard" | string;
   image?: string;
   images?: string[];
@@ -24,15 +26,11 @@ export default function TrekCard(props: TrekCardProps) {
   const description = props.description || trek?.description || "";
   const slug = props.slug || trek?.slug || "";
   const showLink = props.showLink !== undefined ? props.showLink : true;
+  const isVehicle = (props.activityType || trek?.activityType) === "vehicle";
 
   // Duration
   const rawDuration = props.duration !== undefined ? props.duration : trek?.duration;
-  let durationText = "1 Jour";
-  if (typeof rawDuration === "number") {
-    durationText = `${rawDuration}jours`;
-  } else if (typeof rawDuration === "string") {
-    durationText = rawDuration;
-  }
+  const durationText = getDurationLabel(rawDuration ?? 1);
 
   // Difficulty (Facile -> green, Modéré -> yellow, Difficile -> red)
   const rawDifficulty = props.difficulty || trek?.difficulty || "Facile";
@@ -70,7 +68,7 @@ export default function TrekCard(props: TrekCardProps) {
       <article className="h-full">
         <Link
           href={`/treks/${slug}`}
-          aria-label={`Découvrir le trek : ${title}`}
+          aria-label={`Découvrir ${isVehicle ? "la formule" : "le trek"} : ${title}`}
           className="flex h-full flex-col rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#C0462F]"
         >
           <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-[#E4DDD4]">
@@ -88,9 +86,12 @@ export default function TrekCard(props: TrekCardProps) {
           </div>
           <div className="flex flex-1 flex-col pt-5">
             <p className="flex items-center gap-2 font-sans text-sm leading-5 text-[#625C55]">
-              <span>{durationText.replace(/(\d)\s*(jours?)/i, "$1 $2").toLowerCase()}</span>
+              <span>{durationText.toLowerCase()}</span>
               <span aria-hidden="true">·</span>
-              <span>{difficultyLabel}</span>
+              <span className="inline-flex items-center gap-1.5">
+                {isVehicle && <Car size={14} aria-hidden="true" />}
+                {isVehicle ? "En voiture" : difficultyLabel}
+              </span>
             </p>
             <h3 className="mt-3 line-clamp-2 font-display text-xl font-medium leading-snug tracking-tight text-[#1C1917]">
               {title}
@@ -101,7 +102,7 @@ export default function TrekCard(props: TrekCardProps) {
             {showLink && (
               <div className="mt-auto pt-6">
                 <span className="site-button border border-[#1C1917]/20 text-[#1C1917]">
-                  Découvrir le trek
+                  {isVehicle ? "Découvrir la formule" : "Découvrir le trek"}
                   <ArrowUpRight aria-hidden="true" />
                 </span>
               </div>
