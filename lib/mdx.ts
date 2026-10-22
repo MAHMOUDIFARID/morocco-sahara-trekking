@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
+import { parseFrontmatter } from "./frontmatter";
 import { Trek, TrekFrontmatter, Region, RegionFrontmatter, Guide, GuideFrontmatter } from "@/types";
 
 const contentDirectory = path.join(process.cwd(), "content");
@@ -23,10 +23,10 @@ export function getAllTreks(): Trek[] {
   const treks = files.map((fileName) => {
     const filePath = path.join(treksDirectory, fileName);
     const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(fileContents);
+    const { data, content } = parseFrontmatter(fileContents);
     const fallbackSlug = fileName.replace(/\.mdx?$/, "");
 
-    const frontmatter = data as TrekFrontmatter;
+    const frontmatter = data as unknown as TrekFrontmatter;
 
     return {
       title: frontmatter.title || fallbackSlug,
@@ -78,10 +78,10 @@ export function getAllRegions(): Region[] {
   const regions = files.map((fileName) => {
     const filePath = path.join(regionsDirectory, fileName);
     const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(fileContents);
+    const { data, content } = parseFrontmatter(fileContents);
     const fallbackSlug = fileName.replace(/\.mdx?$/, "");
 
-    const frontmatter = data as RegionFrontmatter;
+    const frontmatter = data as unknown as RegionFrontmatter;
 
     return {
       name: frontmatter.name || fallbackSlug,
@@ -113,10 +113,10 @@ export function getAllGuides(): Guide[] {
   const guides = files.map((fileName) => {
     const filePath = path.join(guidesDirectory, fileName);
     const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(fileContents);
+    const { data, content } = parseFrontmatter(fileContents);
     const fallbackSlug = fileName.replace(/\.mdx?$/, "");
 
-    const frontmatter = data as GuideFrontmatter;
+    const frontmatter = data as unknown as GuideFrontmatter;
 
     return {
       name: frontmatter.name || fallbackSlug,

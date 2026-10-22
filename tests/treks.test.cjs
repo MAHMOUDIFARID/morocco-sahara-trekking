@@ -11,7 +11,10 @@ function loadTs(relativePath) {
   const source = ts.transpileModule(fs.readFileSync(file, 'utf8'), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020, esModuleInterop: true },
   }).outputText;
-  vm.runInNewContext(source, { module, exports: module.exports, require, process }, { filename: file });
+  const localRequire = (specifier) => specifier.startsWith('.')
+    ? loadTs(path.resolve(path.dirname(file), `${specifier}.ts`))
+    : require(specifier);
+  vm.runInNewContext(source, { module, exports: module.exports, require: localRequire, process }, { filename: file });
   return module.exports;
 }
 
