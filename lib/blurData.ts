@@ -1,6 +1,7 @@
 export const DEFAULT_BLUR = "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABQAQCdASoKAAoABUB8JZwABDOAAP7uvZ3XQcAA";
 
 export const blurData: Record<string, string> = {
+  "surmesure": "data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACQAQCdASoKAAoABUB8JZgCdAEOD2AA/T++0CH44syhEczlJJAAAA==",
   "5-jours-vallees-ait-bougmez-ait-bouilli-1": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADwAQCdASoKAAoABUB8JYgCdAEedhdoKEgAzhpvN4e3Yb8v23yKT6IbvAnKYY0z9w9kNeXyiGz2iuDXwAA=",
   "ascension-mgoun-vallee-heureuse-ait-bouguemez-1": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoKAAoABUB8JagCdADcqq8DP7wAzIb9QWMjSY6LL3LPqNN5SGqFrqs2ben2lKym47NUaFyJNSbZI3MAAAA=",
   "ascension-mgoun-vallee-heureuse-ait-bouguemez-2": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoKAAoABUB8JagCdADcqq8DP7wAzIb9QWMjSY6LL3LPqNN5SGqFrqs2ben2lKym47NUaFyJNSbZI3MAAAA=",
