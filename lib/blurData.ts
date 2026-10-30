@@ -1,6 +1,10 @@
 export const DEFAULT_BLUR = "data:image/webp;base64,UklGRigAAABXRUJQVlA4IBwAAABQAQCdASoKAAoABUB8JZwABDOAAP7uvZ3XQcAA";
 
 export const blurData: Record<string, string> = {
+  "album-saghro-sommet": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAAAwAgCdASoKAAoABUB8JbACdGuAAuUEatBBYAD+x1ZDVsV3QwOlQkIFVe0VUEsRwG0YfDZ+C7xQAAAA",
+  "album-saghro-souvenir": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADwAQCdASoKAAoABUB8JbACdAEO5lQTJIAA/qG6cgSWbLZVcwg36FwtBWBrUHMnq8IPLrg7gVKoAAAA",
+  "album-siroua-sommet": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAACQAQCdASoKAAoABUB8JQBOgBsW6wAA/raV9A0rcXqeicqneUafv2eqBgxClP0PBAuu4vwAAAA=",
+  "siroua-cover": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADwAQCdASoKAAoABUB8JaACsAEX6J2pMAAA/somrt+asgKjxzFkT1+3xYwkPok6V0gfKv0YAJFQlvDsPe/D/+XkjjybRaZx39UAAA==",
   "toubkal-cover": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAQAgCdASoKAAoABUB8JZACdADdqgxNFyoAAP4/moeREiJPd2A5msYAJEX/BXlnJRrFtKlLZ1IgpFTFWxR+ME5+mNgOGiAA",
   "surmesure": "data:image/webp;base64,UklGRjIAAABXRUJQVlA4ICYAAACQAQCdASoKAAoABUB8JZgCdAEOD2AA/T++0CH44syhEczlJJAAAA==",
   "5-jours-vallees-ait-bougmez-ait-bouilli-1": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADwAQCdASoKAAoABUB8JYgCdAEedhdoKEgAzhpvN4e3Yb8v23yKT6IbvAnKYY0z9w9kNeXyiGz2iuDXwAA=",

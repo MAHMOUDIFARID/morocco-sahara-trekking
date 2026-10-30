@@ -116,6 +116,12 @@ const photoTitles: Record<number, string> = {
 
 const featuredOrder = [1, 37, 60, 73, 34, 7, 82, 101, 97, 107];
 
+const additionalPhotos: TravelPhoto[] = [
+  { src: "/treks/album-siroua-sommet.webp", alt: "Le repère en bois au sommet du Djebel Siroua" },
+  { src: "/treks/album-saghro-souvenir.webp", alt: "Un souvenir partagé au sommet du Saghro" },
+  { src: "/treks/album-saghro-sommet.webp", alt: "Le panneau du sommet face aux montagnes du Saghro" },
+];
+
 export function getTravelPhotos(): TravelPhoto[] {
   const directory = path.join(process.cwd(), "public", "treks");
   // The numbered JPEGs are the originals. The trek-specific WebPs are copies
@@ -142,5 +148,5 @@ export function getTravelPhotos(): TravelPhoto[] {
     const bPosition = featuredOrder.indexOf(b.number);
     return (aPosition < 0 ? featuredOrder.length : aPosition) -
       (bPosition < 0 ? featuredOrder.length : bPosition) || a.number - b.number;
-  }).map(({ src, alt }) => ({ src, alt }));
+  }).map(({ src, alt }) => ({ src, alt })).concat(additionalPhotos);
 }

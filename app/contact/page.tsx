@@ -22,7 +22,7 @@ export default function ContactPage() {
     setErrorMessage("");
 
     try {
-      const res = await fetch("/api/send-mail", {
+      const res = await fetch("/api/send-mail.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -37,7 +37,7 @@ export default function ContactPage() {
         }),
       });
 
-      const data = await res.json();
+      const data = await res.json().catch(() => ({ error: "Le formulaire est momentanément indisponible. Contactez-nous sur WhatsApp." }));
       if (!res.ok) {
         throw new Error(data.error || "Erreur lors de l'envoi.");
       }
